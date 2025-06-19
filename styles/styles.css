@@ -1095,4 +1095,9 @@ section {
     }
 }
 
+.title-small {
+    font-size: 1.55rem; /* Adjust as needed (e.g., 0.9rem or smaller) */
+    font-weight: normal;
+    color: var(--color-grey-2);
+}   
 /*# sourceMappingURL=styles.css.map */
