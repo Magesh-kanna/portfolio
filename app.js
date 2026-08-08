@@ -498,10 +498,13 @@ const ProjectFilter = {
         const filter = btn.dataset.filter;
         $$('.project-card').forEach(card => {
           const isFeatured = card.dataset.featured === 'true';
+          const category   = card.dataset.category;
           if (filter === 'all') {
             card.classList.remove('filtered-out');
           } else if (filter === 'featured') {
             card.classList.toggle('filtered-out', !isFeatured);
+          } else if (filter === 'opensource') {
+            card.classList.toggle('filtered-out', category !== 'opensource');
           }
         });
       });
@@ -678,7 +681,7 @@ const Renderer = {
         : '';
 
       return `
-        <div class="project-card reveal" data-featured="${p.featured}" style="animation-delay:${i * 80}ms">
+        <div class="project-card reveal" data-featured="${p.featured}" data-category="${p.category || 'mobile'}" style="animation-delay:${i * 80}ms">
           <div class="project-thumb">
             <img src="${p.image}" alt="${p.name}" loading="lazy" />
             <div class="project-overlay">

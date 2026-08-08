@@ -66,55 +66,71 @@
     {
       "name": "Namma Wallet",
       "description": "Community Flutter wallet project with 57 stars and 67 forks. Contributed to the Namma Flutter open-source initiative for modern mobile fintech UI.",
-      "image": "assets/photo1.jpg",
+      "image": "img/port1.jpg",
       "tags": ["Flutter", "Open Source", "FinTech", "Dart"],
       "github": "https://github.com/Namma-Flutter/namma_wallet",
       "live": "",
+      "category": "opensource",
+      "featured": true
+    },
+    {
+      "name": "NammaFlutter.com",
+      "description": "Official open-source community platform for Namma Flutter Chennai — connecting Flutter developers, hosting events, and sharing resources.",
+      "image": "img/port7.jpg",
+      "tags": ["Flutter Web", "Open Source", "Community", "Dart"],
+      "github": "https://github.com/Namma-Flutter",
+      "live": "https://nammaflutter.com",
+      "category": "opensource",
       "featured": true
     },
     {
       "name": "BullTech CryptoApp",
       "description": "Cryptocurrency mobile app with Firebase Auth, Coinbase API integration, real-time currency converter, wishlist, and crypto news feed.",
-      "image": "assets/photo2.jpg",
+      "image": "img/port2.jpg",
       "tags": ["Flutter", "Firebase", "REST API", "Coinbase"],
       "github": "https://github.com/Magesh-kanna/BullTech-CryptoApp-Flutter",
       "live": "",
+      "category": "mobile",
       "featured": true
     },
     {
       "name": "Canara FinTech Mobile Banking",
       "description": "Enterprise mobile banking and UPI payment solutions at NPST, focusing on secure transactions, Voice AI assistant, and cognitive dashboards.",
-      "image": "assets/photo3.jpg",
+      "image": "img/port3.jpg",
       "tags": ["Flutter", "FinTech", "UPI", "Voice AI", "IBM Maximo"],
       "github": "https://github.com/Magesh-kanna",
       "live": "",
+      "category": "enterprise",
       "featured": true
     },
     {
       "name": "Apple Maps with SwiftUI",
       "description": "Native iOS navigation application built with SwiftUI featuring Apple Maps API integration and Core Data local storage.",
-      "image": "assets/photo4.jpg",
+      "image": "img/port4.jpg",
       "tags": ["Swift", "SwiftUI", "Apple Maps", "Core Data"],
       "github": "https://github.com/Magesh-kanna/Apple-Maps-with-SwiftUI",
       "live": "",
+      "category": "ios",
       "featured": false
     },
     {
       "name": "Finance Tracker Flutter",
       "description": "Personal finance management app with real-time expense categorization, budget goals, and visual spending analytics.",
-      "image": "assets/photo5.jpg",
+      "image": "img/port5.jpg",
       "tags": ["Flutter", "Dart", "Finance", "Charts"],
       "github": "https://github.com/Magesh-kanna/finance-tracking-flutter",
       "live": "",
+      "category": "mobile",
       "featured": false
     },
     {
       "name": "Dashboard with Interactive Charts",
       "description": "Flutter dashboard application featuring real-time data visualization, customizable graphs, and responsive layout.",
-      "image": "assets/photo7.JPG",
+      "image": "img/port6.jpg",
       "tags": ["Flutter", "Charts", "UI/UX", "Dashboard"],
       "github": "https://github.com/Magesh-kanna/Dashboard-flutter-with-charts-graph",
       "live": "",
+      "category": "mobile",
       "featured": false
     },
     {
@@ -124,6 +140,7 @@
       "tags": ["Swift", "SwiftUI", "iOS", "Core Data"],
       "github": "https://github.com/Magesh-kanna/Expense-Tracker-SwiftUI",
       "live": "",
+      "category": "ios",
       "featured": false
     },
     {
@@ -133,6 +150,7 @@
       "tags": ["Flutter", "UI Design", "Enterprise"],
       "github": "https://github.com/Magesh-kanna/Organization-management-flutter-UI",
       "live": "",
+      "category": "mobile",
       "featured": false
     },
     {
@@ -142,6 +160,7 @@
       "tags": ["Dart", "Flutter Daemon", "CLI", "Developer Tools"],
       "github": "https://github.com/Magesh-kanna",
       "live": "",
+      "category": "opensource",
       "featured": false
     }
   ],
@@ -152,36 +171,9 @@
       "excerpt": "A deep dive into the Flutter Daemon, how IDE tools communicate with Flutter tooling, and what happens under the hood when you build & debug Flutter apps.",
       "date": "May 2024",
       "readTime": "6 min read",
-      "image": "assets/photo1.jpg",
+      "image": "assets/flutter-daemon-blog.png",
       "tags": ["Flutter", "Dart", "CLI", "Medium"],
       "url": "https://medium.com/nammaflutter/%EF%B8%8F-behind-the-scenes-of-flutter-meet-the-flutter-daemon-85d6d7e15f26"
-    },
-    {
-      "title": "From Classroom to Codebase: Building Apps That People Actually Use",
-      "excerpt": "Bridging the gap between academic learning and real-world mobile app development. Key lessons learned from shipping production apps.",
-      "date": "Feb 2024",
-      "readTime": "5 min read",
-      "image": "assets/photo2.jpg",
-      "tags": ["Career", "Mobile Development", "Insights"],
-      "url": "https://medium.com/@codermagesh"
-    },
-    {
-      "title": "Integrating Voice AI in Flutter Applications",
-      "excerpt": "How I integrated an offline Voice Assistant 'TAM' using AI Models in a Flutter application for real-time voice interactions.",
-      "date": "Jan 2024",
-      "readTime": "8 min read",
-      "image": "assets/photo3.jpg",
-      "tags": ["Flutter", "Voice AI", "AI Models"],
-      "url": "https://medium.com/@codermagesh"
-    },
-    {
-      "title": "Building Video Call Features with ZEGO SDK",
-      "excerpt": "End-to-end video call implementation in Flutter using ZEGO SDK for seamless real-time communication.",
-      "date": "Dec 2023",
-      "readTime": "7 min read",
-      "image": "assets/photo4.jpg",
-      "tags": ["Flutter", "ZEGO SDK", "WebRTC"],
-      "url": "https://medium.com/@codermagesh"
     }
   ],
 
