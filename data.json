@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "siteTitle": "Magesh K | SDE & Mobile App Developer",
+    "siteDescription": "Portfolio of Magesh K, a Software Development Engineer specializing in Flutter, iOS, Kotlin Multiplatform, and FinTech solutions.",
+    "name": "Magesh K",
+    "title": "SDE | Flutter & iOS Developer",
+    "location": "Bengaluru & Chennai, India",
+    "email": "codermagesh@gmail.com",
+    "availability": "Available for work",
+    "heroDescription": "Passionate mobile app developer specializing in Flutter, iOS Native, and FinTech solutions. I build impactful apps, improve UX and performance, and integrate innovative features users love.",
+    "aboutLong": "Software Development Engineer with 3+ years of experience building production-ready mobile applications. Currently working at NPST (Banking & Payment Solutions) on Canara Bank's fintech product — building UPI and Mobile banking features. Previously at Thiran Technologies and Doodleblue Innovations, developing Flutter apps with Voice AI integration ('TAM'), Video Call services using ZEGO SDK, and Cognitive Dashboards with real-time mapping. Passionate about mentoring developers, speaking at tech community meetups (Namma Flutter), and shipping high-quality code.",
+    "profilePhoto": "assets/magesh-cover.png",
+    "resumeUrl": "assets/resume.pdf",
+    "subtitles": [
+      "Software Development Engineer",
+      "Flutter & iOS Developer",
+      "FinTech & Mobile Banking Builder",
+      "Gold Medalist & Community Speaker"
+    ],
+    "languages": ["English", "Tamil"]
+  },
+
+  "social": [
+    { "platform": "LinkedIn",  "url": "https://www.linkedin.com/in/mageshkanna/", "icon": "fab fa-linkedin-in", "label": "LinkedIn Profile", "followers": "7K+" },
+    { "platform": "GitHub",    "url": "https://github.com/Magesh-kanna",          "icon": "fab fa-github",      "label": "GitHub Profile",   "followers": "37 Repos" },
+    { "platform": "Twitter",   "url": "https://x.com/codermagesh",                 "icon": "fab fa-twitter",     "label": "Twitter Profile" },
+    { "platform": "Medium",    "url": "https://medium.com/@codermagesh",          "icon": "fab fa-medium-m",    "label": "Medium Blog" },
+    { "platform": "Instagram", "url": "https://instagram.com/Magesh_kanna",       "icon": "fab fa-instagram",   "label": "Instagram Profile" },
+    { "platform": "Facebook",  "url": "https://facebook.com/Magesh.kanna.007",   "icon": "fab fa-facebook-f",  "label": "Facebook Profile" }
+  ],
+
+  "stats": [
+    { "value": "10+", "label": "Projects Completed" },
+    { "value": "3+", "label": "Years of Experience" },
+    { "value": "2", "label": "Companies Worked" },
+    { "value": "10+", "label": "Happy Clients (incl. Canara Fintech)" }
+  ],
+
+  "skills": {
+    "tags": [
+      "Flutter", "Dart", "iOS", "Swift", "SwiftUI", "Android", "Kotlin", "Kotlin Multiplatform",
+      "Firebase", "REST APIs", "FinTech & UPI", "SQLite / Drift", "Hive", "Riverpod", "BLoC",
+      "Provider", "GoRouter", "Voice AI", "ZEGO SDK", "IBM Maximo", "Git", "GitHub", "Figma",
+      "Postman", "App Store", "Play Store", "CI/CD", "Unit Testing", "Performance Optimization",
+      "Mentorship", "Community Speaker"
+    ],
+    "technical": [
+      { "name": "Flutter & Dart", "level": 92 },
+      { "name": "Firebase & Backend Integration", "level": 88 },
+      { "name": "REST APIs & FinTech (UPI)", "level": 88 },
+      { "name": "Riverpod & State Management", "level": 85 },
+      { "name": "iOS / Swift / SwiftUI", "level": 80 },
+      { "name": "SQLite / Drift / Hive", "level": 80 },
+      { "name": "Kotlin / KMP / Android", "level": 75 },
+      { "name": "Voice AI & ZEGO SDK Integration", "level": 85 }
+    ],
+    "soft": [
+      { "name": "Presentation & Tech Talk Speaking", "level": 92 },
+      { "name": "Developer Mentorship & Leadership", "level": 90 },
+      { "name": "Problem Solving & Architecture", "level": 88 },
+      { "name": "Team Collaboration & Agile", "level": 90 }
+    ]
+  },
+
+  "projects": [
+    {
+      "name": "Namma Wallet",
+      "description": "Community Flutter wallet project with 57 stars and 67 forks. Contributed to the Namma Flutter open-source initiative for modern mobile fintech UI.",
+      "image": "assets/photo1.jpg",
+      "tags": ["Flutter", "Open Source", "FinTech", "Dart"],
+      "github": "https://github.com/Namma-Flutter/namma_wallet",
+      "live": "",
+      "featured": true
+    },
+    {
+      "name": "BullTech CryptoApp",
+      "description": "Cryptocurrency mobile app with Firebase Auth, Coinbase API integration, real-time currency converter, wishlist, and crypto news feed.",
+      "image": "assets/photo2.jpg",
+      "tags": ["Flutter", "Firebase", "REST API", "Coinbase"],
+      "github": "https://github.com/Magesh-kanna/BullTech-CryptoApp-Flutter",
+      "live": "",
+      "featured": true
+    },
+    {
+      "name": "Canara FinTech Mobile Banking",
+      "description": "Enterprise mobile banking and UPI payment solutions at NPST, focusing on secure transactions, Voice AI assistant, and cognitive dashboards.",
+      "image": "assets/photo3.jpg",
+      "tags": ["Flutter", "FinTech", "UPI", "Voice AI", "IBM Maximo"],
+      "github": "https://github.com/Magesh-kanna",
+      "live": "",
+      "featured": true
+    },
+    {
+      "name": "Apple Maps with SwiftUI",
+      "description": "Native iOS navigation application built with SwiftUI featuring Apple Maps API integration and Core Data local storage.",
+      "image": "assets/photo4.jpg",
+      "tags": ["Swift", "SwiftUI", "Apple Maps", "Core Data"],
+      "github": "https://github.com/Magesh-kanna/Apple-Maps-with-SwiftUI",
+      "live": "",
+      "featured": false
+    },
+    {
+      "name": "Finance Tracker Flutter",
+      "description": "Personal finance management app with real-time expense categorization, budget goals, and visual spending analytics.",
+      "image": "assets/photo5.jpg",
+      "tags": ["Flutter", "Dart", "Finance", "Charts"],
+      "github": "https://github.com/Magesh-kanna/finance-tracking-flutter",
+      "live": "",
+      "featured": false
+    },
+    {
+      "name": "Dashboard with Interactive Charts",
+      "description": "Flutter dashboard application featuring real-time data visualization, customizable graphs, and responsive layout.",
+      "image": "assets/photo7.JPG",
+      "tags": ["Flutter", "Charts", "UI/UX", "Dashboard"],
+      "github": "https://github.com/Magesh-kanna/Dashboard-flutter-with-charts-graph",
+      "live": "",
+      "featured": false
+    },
+    {
+      "name": "Expense Tracker (SwiftUI)",
+      "description": "iOS expense tracking application built natively with SwiftUI for managing income, budgets, and categorized spending.",
+      "image": "assets/photo8.JPG",
+      "tags": ["Swift", "SwiftUI", "iOS", "Core Data"],
+      "github": "https://github.com/Magesh-kanna/Expense-Tracker-SwiftUI",
+      "live": "",
+      "featured": false
+    },
+    {
+      "name": "Organization Management UI",
+      "description": "Comprehensive organizational management interface with employee directory, event calendar, document hub, and analytics.",
+      "image": "assets/photo9.JPG",
+      "tags": ["Flutter", "UI Design", "Enterprise"],
+      "github": "https://github.com/Magesh-kanna/Organization-management-flutter-UI",
+      "live": "",
+      "featured": false
+    },
+    {
+      "name": "Flutter Daemon CLI Tools",
+      "description": "Developer utility tools and scripts for interacting with the Flutter Daemon for IDE tooling, build automation, and debugging.",
+      "image": "assets/photo10.jpg",
+      "tags": ["Dart", "Flutter Daemon", "CLI", "Developer Tools"],
+      "github": "https://github.com/Magesh-kanna",
+      "live": "",
+      "featured": false
+    }
+  ],
+
+  "blogs": [
+    {
+      "title": "⚡️ Behind the Scenes of Flutter: Meet the Flutter Daemon",
+      "excerpt": "A deep dive into the Flutter Daemon, how IDE tools communicate with Flutter tooling, and what happens under the hood when you build & debug Flutter apps.",
+      "date": "May 2024",
+      "readTime": "6 min read",
+      "image": "assets/photo1.jpg",
+      "tags": ["Flutter", "Dart", "CLI", "Medium"],
+      "url": "https://medium.com/nammaflutter/%EF%B8%8F-behind-the-scenes-of-flutter-meet-the-flutter-daemon-85d6d7e15f26"
+    },
+    {
+      "title": "From Classroom to Codebase: Building Apps That People Actually Use",
+      "excerpt": "Bridging the gap between academic learning and real-world mobile app development. Key lessons learned from shipping production apps.",
+      "date": "Feb 2024",
+      "readTime": "5 min read",
+      "image": "assets/photo2.jpg",
+      "tags": ["Career", "Mobile Development", "Insights"],
+      "url": "https://medium.com/@codermagesh"
+    },
+    {
+      "title": "Integrating Voice AI in Flutter Applications",
+      "excerpt": "How I integrated an offline Voice Assistant 'TAM' using AI Models in a Flutter application for real-time voice interactions.",
+      "date": "Jan 2024",
+      "readTime": "8 min read",
+      "image": "assets/photo3.jpg",
+      "tags": ["Flutter", "Voice AI", "AI Models"],
+      "url": "https://medium.com/@codermagesh"
+    },
+    {
+      "title": "Building Video Call Features with ZEGO SDK",
+      "excerpt": "End-to-end video call implementation in Flutter using ZEGO SDK for seamless real-time communication.",
+      "date": "Dec 2023",
+      "readTime": "7 min read",
+      "image": "assets/photo4.jpg",
+      "tags": ["Flutter", "ZEGO SDK", "WebRTC"],
+      "url": "https://medium.com/@codermagesh"
+    }
+  ],
+
+  "featured": [
+    {
+      "title": "Tech Talk Speaker — Namma Flutter & S.A. Engineering College",
+      "subtitle": "Community Keynote & Guest Lectures",
+      "date": "2024 – Present",
+      "image": "assets/group-photo-of-my-talk.jpg",
+      "description": "Delivering keynotes on mobile architecture, Flutter Daemon, and bridging the classroom-to-codebase gap for student developers and tech communities."
+    },
+    {
+      "title": "Gold Medalist — Master of Computer Applications (MCA)",
+      "subtitle": "Academic Excellence Award",
+      "date": "2021 – 2023",
+      "image": "assets/gold-medalist.jpg",
+      "description": "Graduated with 9.0 GPA and secured the Gold Medal at S.A. Engineering College for outstanding academic performance in Computer Applications."
+    }
+  ],
+
+  "experience": [
+    {
+      "duration": "Sep 2025 – Present",
+      "role": "Software Development Engineer",
+      "company": "NPST (Network People Services Technologies Ltd.)",
+      "location": "Bengaluru, India",
+      "description": "Working on Canara Bank's fintech product — building UPI and Mobile banking features. Integrated Voice Assistant 'TAM' with AI Model for offline capabilities, Video Call services using ZEGO SDK, and Cognitive Dashboard with real-time mapping.",
+      "tags": ["Flutter", "FinTech", "UPI", "IBM Maximo", "Voice AI"]
+    },
+    {
+      "duration": "Feb 2024 – Sep 2025",
+      "role": "Mobile Application Developer",
+      "company": "Thiran Technologies",
+      "location": "Chennai, India",
+      "description": "Key role in developing production-ready Flutter applications. Integrated Voice Assistant 'TAM' with Voice SDK for offline AI. Built Video Call services with ZEGO SDK and Cognitive Dashboard with real-time mapping.",
+      "tags": ["Flutter", "Voice AI", "ZEGO SDK", "Clean Architecture"]
+    },
+    {
+      "duration": "Aug 2023 – Feb 2024",
+      "role": "Trainee Mobile Developer",
+      "company": "Thiran Technologies",
+      "location": "Chennai, India",
+      "description": "Developed Flutter applications for Android and iOS using Riverpod State Management, SQLite/Drift, GoRouter, and adaptive screens. Handled concurrent operations with Isolates.",
+      "tags": ["Flutter", "Riverpod", "Drift", "Isolates"]
+    },
+    {
+      "duration": "Jan 2023 – Aug 2023",
+      "role": "Mobile Application Developer",
+      "company": "doodleblue Innovations",
+      "location": "Chennai, India",
+      "description": "Built applications for Android, iOS, and Web using Flutter and iOS (Swift) with REST API integration.",
+      "tags": ["Flutter", "iOS", "Swift", "REST API"]
+    },
+    {
+      "duration": "Sep 2022 – Dec 2022",
+      "role": "Flutter Developer",
+      "company": "Bull Tech Pvt Ltd",
+      "location": "Chennai, India",
+      "description": "Built Cryptocurrency Application with Firebase Auth, Coinbase API integration, currency converter, wishlist, and crypto news feed.",
+      "tags": ["Flutter", "Firebase", "Coinbase API"]
+    }
+  ],
+
+  "education": [
+    {
+      "duration": "2021 – 2023",
+      "degree": "Master of Computer Applications (MCA) — Gold Medalist",
+      "institution": "S.A. Engineering College",
+      "location": "Chennai, India",
+      "description": "Graduated as Gold Medalist with 9.0 GPA. Specialized in app development, software engineering, cybersecurity, and cloud technologies.",
+      "gpa": "9.0 GPA (Gold Medalist)"
+    },
+    {
+      "duration": "2018 – 2021",
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "institution": "Madras University",
+      "location": "Chennai, India",
+      "description": "Graduated with 8.2 CGPA. Gained experience in computer science fundamentals, event management, and leadership.",
+      "gpa": "8.2 CGPA"
+    }
+  ],
+
+  "contact": {
+    "subheading": "Open for full-time roles, mobile app consultations, and tech talk speaking opportunities.",
+    "items": [
+      { "label": "Location", "value": "Bengaluru & Chennai, India", "icon": "fas fa-map-marker-alt" },
+      { "label": "Email",    "value": "codermagesh@gmail.com",    "icon": "fas fa-envelope", "href": "mailto:codermagesh@gmail.com" },
+      { "label": "Languages", "value": "English, Tamil",          "icon": "fas fa-language" },
+      { "label": "Education", "value": "MCA — Gold Medalist (9.0 GPA)", "icon": "fas fa-graduation-cap" }
+    ]
+  }
+}
