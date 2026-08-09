@@ -336,6 +336,7 @@ const FeaturedCarousel = {
           <h3 class="slide-title">${item.title}</h3>
           <p class="slide-subtitle">${item.subtitle}</p>
           <p class="slide-desc">${item.description}</p>
+          ${item.linkedinUrl ? `<a href="${item.linkedinUrl}" target="_blank" rel="noopener noreferrer" class="slide-linkedin-btn"><i class="fab fa-linkedin"></i> View on LinkedIn</a>` : ''}
         </div>
       </div>
     `).join('');
@@ -678,6 +679,18 @@ const Renderer = {
     const p = data.product;
     if (!hero || !p) return;
 
+    // Build carousel HTML if carouselImages provided
+    const carouselImages = p.carouselImages && p.carouselImages.length ? p.carouselImages : [p.image];
+    const carouselHTML = `
+      <div class="product-carousel" id="product-img-carousel">
+        ${carouselImages.map((src, i) => `
+          <img src="${src}" alt="${p.title} screenshot ${i + 1}" loading="lazy" class="product-carousel-img${i === 0 ? ' active' : ''}" />
+        `).join('')}
+        <div class="product-carousel-dots">
+          ${carouselImages.map((_, i) => `<span class="product-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></span>`).join('')}
+        </div>
+      </div>`;
+
     hero.innerHTML = `
       <div class="product-info">
         <div class="product-badges">
@@ -692,9 +705,35 @@ const Renderer = {
         </div>
       </div>
       <div class="product-image-wrap">
-        <img src="${p.image}" alt="${p.title}" loading="lazy" />
+        ${carouselHTML}
       </div>
     `;
+
+    // Auto-fade carousel
+    if (carouselImages.length > 1) {
+      const imgs = $$('.product-carousel-img', hero);
+      const dots = $$('.product-dot', hero);
+      let current = 0;
+
+      const goTo = (idx) => {
+        imgs[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + imgs.length) % imgs.length;
+        imgs[current].classList.add('active');
+        dots[current].classList.add('active');
+      };
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.idx, 10);
+          goTo(idx);
+          clearInterval(productTimer);
+          productTimer = setInterval(() => goTo(current + 1), 3500);
+        });
+      });
+
+      let productTimer = setInterval(() => goTo(current + 1), 3500);
+    }
   },
 
   /* ── Projects ─ */
@@ -710,10 +749,16 @@ const Renderer = {
         ? `<a href="${p.live}" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>`
         : '';
 
+      // GitHub banner projects get a special glowing GitHub logo badge
+      const githubBadge = p.githubBanner
+        ? `<div class="github-banner-badge"><i class="fab fa-github"></i><span>GitHub Project</span></div>`
+        : '';
+
       return `
         <div class="project-card reveal" data-featured="${p.featured}" data-category="${p.category || 'mobile'}" style="animation-delay:${i * 80}ms">
-          <div class="project-thumb">
+          <div class="project-thumb${p.githubBanner ? ' has-github-banner' : ''}">
             <img src="${p.image}" alt="${p.name}" loading="lazy" />
+            ${githubBadge}
             <div class="project-overlay">
               ${p.github ? `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>` : ''}
               ${p.live   ? `<a href="${p.live}"   target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="View live demo"><i class="fas fa-external-link-alt"></i></a>` : ''}

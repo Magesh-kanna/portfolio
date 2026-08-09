@@ -70,6 +70,13 @@
     "tagline": "Your Personalized, Beautifully Animated AI Travel Planner",
     "description": "Plan Smarter. Explore Further. Chat with AI to build day-by-day itineraries, discover hidden gems in any city, and manage your entire trip in one beautiful mobile app.",
     "image": "assets/itineery-ai.png",
+    "carouselImages": [
+      "assets/itineery-screen1.png",
+      "assets/itineery-screen2.png",
+      "assets/itineery-screen3.png",
+      "assets/itineery-screen4.png",
+      "assets/itineery-screen5.png"
+    ],
     "playstore": "https://play.google.com/store/apps/details?id=com.universeappstudio.itineery",
     "website": "https://itineery-ai.vercel.app/",
     "badges": ["AI Travel Planner", "Flutter", "Day-by-Day Itineraries", "Hidden Gems", "Play Store"]
@@ -99,82 +106,90 @@
     {
       "name": "BullTech CryptoApp",
       "description": "Cryptocurrency mobile app with Firebase Auth, Coinbase API integration, real-time currency converter, wishlist, and crypto news feed.",
-      "image": "img/port2.jpg",
+      "image": "assets/github-project-banner.png",
       "tags": ["Flutter", "Firebase", "REST API", "Coinbase"],
       "github": "https://github.com/Magesh-kanna/BullTech-CryptoApp-Flutter",
       "live": "",
       "category": "mobile",
-      "featured": true
+      "featured": true,
+      "githubBanner": true
     },
     {
       "name": "Canara FinTech Mobile Banking",
       "description": "Enterprise mobile banking and UPI payment solutions at NPST for Canara Bank (80M+ user base), focusing on secure transactions, Voice AI assistant, and cognitive dashboards.",
-      "image": "img/port3.jpg",
+      "image": "assets/github-project-banner.png",
       "tags": ["Flutter", "FinTech", "UPI", "Voice AI", "IBM Maximo"],
       "github": "https://github.com/Magesh-kanna",
       "live": "",
       "category": "enterprise",
-      "featured": true
+      "featured": true,
+      "githubBanner": true
     },
     {
       "name": "Apple Maps with SwiftUI",
       "description": "Native iOS navigation application built with SwiftUI featuring Apple Maps API integration and Core Data local storage.",
-      "image": "img/port4.jpg",
+      "image": "assets/github-project-banner.png",
       "tags": ["Swift", "SwiftUI", "Apple Maps", "Core Data"],
       "github": "https://github.com/Magesh-kanna/Apple-Maps-with-SwiftUI",
       "live": "",
       "category": "ios",
-      "featured": false
+      "featured": false,
+      "githubBanner": true
     },
     {
       "name": "Finance Tracker Flutter",
       "description": "Personal finance management app with real-time expense categorization, budget goals, and visual spending analytics.",
-      "image": "img/port5.jpg",
+      "image": "assets/github-project-banner.png",
       "tags": ["Flutter", "Dart", "Finance", "Charts"],
       "github": "https://github.com/Magesh-kanna/finance-tracking-flutter",
       "live": "",
       "category": "mobile",
-      "featured": false
+      "featured": false,
+      "githubBanner": true
     },
     {
       "name": "Dashboard with Interactive Charts",
       "description": "Flutter dashboard application featuring real-time data visualization, customizable graphs, and responsive layout.",
-      "image": "img/port6.jpg",
+      "image": "assets/github-project-banner.png",
       "tags": ["Flutter", "Charts", "UI/UX", "Dashboard"],
       "github": "https://github.com/Magesh-kanna/Dashboard-flutter-with-charts-graph",
       "live": "",
       "category": "mobile",
-      "featured": false
+      "featured": false,
+      "githubBanner": true
     },
     {
       "name": "Expense Tracker (SwiftUI)",
       "description": "iOS expense tracking application built natively with SwiftUI for managing income, budgets, and categorized spending.",
-      "image": "assets/photo8.JPG",
+      "image": "assets/github-project-banner.png",
       "tags": ["Swift", "SwiftUI", "iOS", "Core Data"],
       "github": "https://github.com/Magesh-kanna/Expense-Tracker-SwiftUI",
       "live": "",
       "category": "ios",
-      "featured": false
+      "featured": false,
+      "githubBanner": true
     },
     {
       "name": "Organization Management UI",
       "description": "Comprehensive organizational management interface with employee directory, event calendar, document hub, and analytics.",
-      "image": "assets/photo9.JPG",
+      "image": "assets/github-project-banner.png",
       "tags": ["Flutter", "UI Design", "Enterprise"],
       "github": "https://github.com/Magesh-kanna/Organization-management-flutter-UI",
       "live": "",
       "category": "mobile",
-      "featured": false
+      "featured": false,
+      "githubBanner": true
     },
     {
       "name": "Flutter Daemon CLI Tools",
       "description": "Developer utility tools and scripts for interacting with the Flutter Daemon for IDE tooling, build automation, and debugging.",
-      "image": "assets/photo10.jpg",
+      "image": "assets/github-project-banner.png",
       "tags": ["Dart", "Flutter Daemon", "CLI", "Developer Tools"],
       "github": "https://github.com/Magesh-kanna",
       "live": "",
       "category": "opensource",
-      "featured": false
+      "featured": false,
+      "githubBanner": true
     }
   ],
 
@@ -196,14 +211,32 @@
       "subtitle": "Community Keynote & Guest Lectures",
       "date": "2024 – Present",
       "image": "assets/group-photo-of-my-talk.jpg",
-      "description": "Delivering keynotes on mobile architecture, Flutter Daemon, and bridging the classroom-to-codebase gap for student developers and tech communities."
+      "description": "Delivering keynotes on mobile architecture, Flutter Daemon, and bridging the classroom-to-codebase gap for student developers and tech communities.",
+      "linkedinUrl": ""
     },
     {
       "title": "Gold Medalist — Master of Computer Applications (MCA)",
       "subtitle": "Academic Excellence Award",
       "date": "2021 – 2023",
       "image": "assets/gold-medalist.jpg",
-      "description": "Graduated with 9.0 GPA and secured the Gold Medal at S.A. Engineering College for outstanding academic performance in Computer Applications."
+      "description": "Graduated with 9.0 GPA and secured the Gold Medal at S.A. Engineering College for outstanding academic performance in Computer Applications.",
+      "linkedinUrl": ""
+    },
+    {
+      "title": "Guest Lecture — Software Engineering & Mobile Development",
+      "subtitle": "College Guest Speaker | #GuestLecture #SoftwareEngineering",
+      "date": "2024",
+      "image": "assets/featured-guest-lecture.png",
+      "description": "Delivered a guest lecture on Flutter & Mobile App Development to engineering students, covering real-world project structure, state management, and production deployment strategies.",
+      "linkedinUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7429611511058411520/"
+    },
+    {
+      "title": "Google I/O Connect Bengaluru",
+      "subtitle": "Tech Conference Attendee | #GoogleIO #Bengaluru",
+      "date": "2025",
+      "image": "assets/featured-google-io.png",
+      "description": "Attended Google I/O Connect Bengaluru — India's biggest Google developer event. Explored the latest in AI, Flutter, Android, and Google's developer ecosystem with thousands of engineers.",
+      "linkedinUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7484161432561799169/"
     }
   ],
 
