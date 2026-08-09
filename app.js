@@ -680,17 +680,7 @@ const Renderer = {
     const p = data.product;
     if (!hero || !p) return;
 
-    // Build carousel HTML if carouselImages provided
     const carouselImages = p.carouselImages && p.carouselImages.length ? p.carouselImages : [p.image];
-    const iPhoneFrames = carouselImages.map((src, i) => `
-      <div class="iphone-frame${i === 0 ? ' active' : ''}" data-idx="${i}">
-        <div class="iphone-notch"></div>
-        <div class="iphone-screen">
-          <img src="${src}" alt="${p.title} screenshot ${i + 1}" loading="lazy" />
-        </div>
-        <div class="iphone-home"></div>
-      </div>
-    `).join('');
 
     hero.innerHTML = `
       <div class="product-info">
@@ -708,40 +698,88 @@ const Renderer = {
           </a>
         </div>
       </div>
-      <div class="product-image-wrap">
-        <div class="iphone-carousel" id="product-iphone-carousel">
-          ${iPhoneFrames}
-          <div class="iphone-dots">
-            ${carouselImages.map((_, i) => `<span class="iphone-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></span>`).join('')}
+
+      <div class="product-stage-3d">
+        <div class="stage-glow"></div>
+        <div class="dual-device-container">
+          <!-- Background Offset Device -->
+          <div class="device-mockup back-device">
+            <div class="device-bezel">
+              <div class="device-island"></div>
+              <div class="device-screen">
+                <img id="stage-back-img" src="${carouselImages[1] || carouselImages[0]}" alt="App Preview Back" loading="lazy" />
+              </div>
+            </div>
           </div>
+
+          <!-- Foreground Main Floating Device -->
+          <div class="device-mockup main-device">
+            <div class="device-bezel">
+              <div class="device-island"></div>
+              <div class="device-screen">
+                <img id="stage-main-img" src="${carouselImages[0]}" alt="App Preview Main" loading="lazy" />
+              </div>
+              <div class="device-glare"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Screen Switcher Pills -->
+        <div class="stage-screen-pills">
+          ${carouselImages.map((_, i) => `
+            <button class="stage-pill${i === 0 ? ' active' : ''}" data-idx="${i}">
+              <span class="pill-num">0${i + 1}</span>
+            </button>
+          `).join('')}
         </div>
       </div>
     `;
 
-    // Auto-fade iPhone carousel
+    // 3D Stage Auto-Carousel & Pill Handler
     if (carouselImages.length > 1) {
-      const frames = $$('.iphone-frame', hero);
-      const dots   = $$('.iphone-dot', hero);
-      let current  = 0;
+      const mainImg = $('#stage-main-img', hero);
+      const backImg = $('#stage-back-img', hero);
+      const pills   = $$('.stage-pill', hero);
+      let current   = 0;
 
       const goTo = (idx) => {
-        frames[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (idx + frames.length) % frames.length;
-        frames[current].classList.add('active');
-        dots[current].classList.add('active');
+        if (idx === current) return;
+        pills[current].classList.remove('active');
+        current = (idx + carouselImages.length) % carouselImages.length;
+        pills[current].classList.add('active');
+
+        const nextIdx = (current + 1) % carouselImages.length;
+
+        // Smooth cross-fade animation
+        if (mainImg) {
+          mainImg.style.opacity = '0';
+          mainImg.style.transform = 'scale(0.96)';
+          setTimeout(() => {
+            mainImg.src = carouselImages[current];
+            mainImg.style.opacity = '1';
+            mainImg.style.transform = 'scale(1)';
+          }, 250);
+        }
+
+        if (backImg) {
+          backImg.style.opacity = '0';
+          setTimeout(() => {
+            backImg.src = carouselImages[nextIdx];
+            backImg.style.opacity = '0.65';
+          }, 250);
+        }
       };
 
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const idx = parseInt(dot.dataset.idx, 10);
+      pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const idx = parseInt(pill.dataset.idx, 10);
           goTo(idx);
-          clearInterval(iphoneTimer);
-          iphoneTimer = setInterval(() => goTo(current + 1), 3200);
+          clearInterval(stageTimer);
+          stageTimer = setInterval(() => goTo(current + 1), 3600);
         });
       });
 
-      let iphoneTimer = setInterval(() => goTo(current + 1), 3200);
+      let stageTimer = setInterval(() => goTo(current + 1), 3600);
     }
   },
 
