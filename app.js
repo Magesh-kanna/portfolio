@@ -328,8 +328,9 @@ const FeaturedCarousel = {
     // Render slides
     this.container.innerHTML = data.featured.map((item, i) => `
       <div class="carousel-slide${i === 0 ? ' active' : ''}" data-index="${i}">
-        <div class="slide-image-frame">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
+        <div class="slide-image-frame${item.extraImage ? ' dual-image' : ''}">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" class="slide-main-img" />
+          ${item.extraImage ? `<img src="${item.extraImage}" alt="${item.title} extra" loading="lazy" class="slide-extra-img" />` : ''}
         </div>
         <div class="slide-content">
           <span class="slide-badge">${item.date}</span>
@@ -681,15 +682,15 @@ const Renderer = {
 
     // Build carousel HTML if carouselImages provided
     const carouselImages = p.carouselImages && p.carouselImages.length ? p.carouselImages : [p.image];
-    const carouselHTML = `
-      <div class="product-carousel" id="product-img-carousel">
-        ${carouselImages.map((src, i) => `
-          <img src="${src}" alt="${p.title} screenshot ${i + 1}" loading="lazy" class="product-carousel-img${i === 0 ? ' active' : ''}" />
-        `).join('')}
-        <div class="product-carousel-dots">
-          ${carouselImages.map((_, i) => `<span class="product-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></span>`).join('')}
+    const iPhoneFrames = carouselImages.map((src, i) => `
+      <div class="iphone-frame${i === 0 ? ' active' : ''}" data-idx="${i}">
+        <div class="iphone-notch"></div>
+        <div class="iphone-screen">
+          <img src="${src}" alt="${p.title} screenshot ${i + 1}" loading="lazy" />
         </div>
-      </div>`;
+        <div class="iphone-home"></div>
+      </div>
+    `).join('');
 
     hero.innerHTML = `
       <div class="product-info">
@@ -703,23 +704,32 @@ const Renderer = {
           ${p.playstore ? `<a href="${p.playstore}" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-google-play"></i> Play Store</a>` : ''}
           ${p.website   ? `<a href="${p.website}"   target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-globe"></i> App Website</a>` : ''}
         </div>
+        <a class="btn btn-appstore-soon" href="#" onclick="return false;" title="Coming soon on iOS App Store">
+          <i class="fab fa-apple"></i>
+          <span><small>Coming soon on</small><br/>iOS App Store</span>
+        </a>
       </div>
       <div class="product-image-wrap">
-        ${carouselHTML}
+        <div class="iphone-carousel" id="product-iphone-carousel">
+          ${iPhoneFrames}
+          <div class="iphone-dots">
+            ${carouselImages.map((_, i) => `<span class="iphone-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></span>`).join('')}
+          </div>
+        </div>
       </div>
     `;
 
-    // Auto-fade carousel
+    // Auto-fade iPhone carousel
     if (carouselImages.length > 1) {
-      const imgs = $$('.product-carousel-img', hero);
-      const dots = $$('.product-dot', hero);
-      let current = 0;
+      const frames = $$('.iphone-frame', hero);
+      const dots   = $$('.iphone-dot', hero);
+      let current  = 0;
 
       const goTo = (idx) => {
-        imgs[current].classList.remove('active');
+        frames[current].classList.remove('active');
         dots[current].classList.remove('active');
-        current = (idx + imgs.length) % imgs.length;
-        imgs[current].classList.add('active');
+        current = (idx + frames.length) % frames.length;
+        frames[current].classList.add('active');
         dots[current].classList.add('active');
       };
 
@@ -727,12 +737,12 @@ const Renderer = {
         dot.addEventListener('click', () => {
           const idx = parseInt(dot.dataset.idx, 10);
           goTo(idx);
-          clearInterval(productTimer);
-          productTimer = setInterval(() => goTo(current + 1), 3500);
+          clearInterval(iphoneTimer);
+          iphoneTimer = setInterval(() => goTo(current + 1), 3200);
         });
       });
 
-      let productTimer = setInterval(() => goTo(current + 1), 3500);
+      let iphoneTimer = setInterval(() => goTo(current + 1), 3200);
     }
   },
 
@@ -820,21 +830,32 @@ const Renderer = {
     const container = $(`#${id}`);
     if (!container || !items) return;
 
-    container.innerHTML = items.map((item, i) => `
-      <div class="tl-item" style="animation-delay:${i * 120}ms">
-        <div class="tl-left">
-          <div class="tl-icon-wrap"><i class="${iconClass}"></i></div>
-          <div class="tl-line"></div>
+    container.innerHTML = items.map((item, i) => {
+      const companyImg = item.companyImage
+        ? `<div class="tl-company-img"><img src="${item.companyImage}" alt="${item.company || item.institution}" loading="lazy" /></div>`
+        : '';
+      const universityBadge = item.university
+        ? `<span class="tl-university"><i class="fas fa-university"></i> ${item.university}</span>`
+        : '';
+
+      return `
+        <div class="tl-item" style="animation-delay:${i * 120}ms">
+          <div class="tl-left">
+            <div class="tl-icon-wrap"><i class="${iconClass}"></i></div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-content">
+            ${companyImg}
+            <p class="tl-duration">${item.duration}</p>
+            <h3 class="tl-role">${item.role || item.degree}</h3>
+            <p class="tl-company"><i class="fas fa-building"></i> ${item.company || item.institution}${item.location ? ` — ${item.location}` : ''}</p>
+            ${universityBadge}
+            <p class="tl-desc">${item.description}</p>
+            ${item.gpa ? `<span class="tl-gpa"><i class="fas fa-star"></i> ${item.gpa}</span>` : ''}
+          </div>
         </div>
-        <div class="tl-content">
-          <p class="tl-duration">${item.duration}</p>
-          <h3 class="tl-role">${item.role || item.degree}</h3>
-          <p class="tl-company"><i class="fas fa-building"></i> ${item.company || item.institution}${item.location ? ` — ${item.location}` : ''}</p>
-          <p class="tl-desc">${item.description}</p>
-          ${item.gpa ? `<span class="tl-gpa"><i class="fas fa-star"></i> ${item.gpa}</span>` : ''}
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   },
 
   /* ── Contact ─ */

@@ -291,7 +291,7 @@ body.cursor-click .cursor { width: 6px; height: 6px; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 1.2vw, 1.5rem);
+  gap: clamp(0.5rem, 1vw, 1.2rem);
 }
 
 .nav-link {
@@ -1185,53 +1185,143 @@ body.cursor-click .cursor { width: 6px; height: 6px; }
   filter: grayscale(0);
 }
 
-/* Product Image Carousel */
-.product-carousel {
+/* iPhone Frame Carousel for Product Section */
+.product-image-wrap {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+}
+
+.iphone-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  border-radius: inherit;
 }
 
-.product-carousel-img {
+.iphone-frame {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
+  width: 200px;
+  height: 400px;
+  background: #1a1a2e;
+  border-radius: 36px;
+  border: 3px solid #333;
+  box-shadow:
+    0 0 0 1px #111,
+    0 20px 60px rgba(0,0,0,0.6),
+    inset 0 0 0 2px #2a2a3e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transform: translateX(40px) scale(0.92);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none;
 }
 
-.product-carousel-img.active {
+.iphone-frame.active {
   opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+}
+
+.iphone-notch {
+  width: 80px;
+  height: 20px;
+  background: #111;
+  border-radius: 0 0 14px 14px;
+  margin-top: 0;
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.iphone-screen {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
   position: relative;
 }
 
-.product-carousel-dots {
+.iphone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.iphone-home {
+  width: 36px;
+  height: 5px;
+  background: #444;
+  border-radius: 3px;
+  margin: 8px 0;
+  flex-shrink: 0;
+}
+
+.iphone-dots {
   position: absolute;
-  bottom: 0.75rem;
+  bottom: -28px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 6px;
-  z-index: 3;
+  z-index: 10;
 }
 
-.product-dot {
+.iphone-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.35);
-  border: 1px solid rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
   cursor: pointer;
   transition: all var(--transition);
 }
 
-.product-dot.active {
+.iphone-dot.active {
   background: var(--accent);
   border-color: var(--accent);
   box-shadow: 0 0 6px var(--accent);
+}
+
+/* iOS App Store Coming Soon Button */
+.btn-appstore-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.2rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: default;
+  margin-top: 0.75rem;
+  transition: border-color var(--transition);
+  backdrop-filter: blur(4px);
+}
+
+.btn-appstore-soon i {
+  font-size: 1.4rem;
+  color: #aaa;
+}
+
+.btn-appstore-soon small {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  display: block;
+  line-height: 1;
+}
+
+.btn-appstore-soon:hover {
+  border-color: rgba(255,255,255,0.3);
 }
 
 /* LinkedIn Button in Featured Slides */
@@ -1411,6 +1501,35 @@ body.cursor-click .cursor { width: 6px; height: 6px; }
   border: 1px solid var(--border);
   position: relative;
   box-shadow: var(--shadow-lg);
+}
+
+/* Dual image layout for slides with extraImage */
+.slide-image-frame.dual-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  height: 380px;
+}
+
+.slide-main-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  grid-row: 1 / -1;
+  transition: transform var(--transition-slow);
+}
+
+.slide-extra-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform var(--transition-slow);
+}
+
+.slide-image-frame:not(.dual-image) img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
 }
 
 .slide-image-frame img {
@@ -1628,10 +1747,49 @@ body.cursor-click .cursor { width: 6px; height: 6px; }
 .tl-company {
   font-size: 0.85rem;
   color: var(--text-muted);
-  margin: 0.3rem 0 1rem;
+  margin: 0.3rem 0 0.5rem;
   font-weight: 500;
 }
 .tl-company i { font-size: 0.75rem; margin-right: 0.3rem; }
+
+/* Company / University image in timeline */
+.tl-company-img {
+  width: 100%;
+  height: 140px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+
+.tl-company-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.85);
+  transition: filter var(--transition), transform var(--transition-slow);
+}
+
+.tl-content:hover .tl-company-img img {
+  filter: brightness(1);
+  transform: scale(1.02);
+}
+
+/* University badge in education timeline */
+.tl-university {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: #818cf8;
+  font-family: var(--font-mono);
+  background: rgba(129, 140, 248, 0.1);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
 
 .tl-desc {
   font-size: 0.85rem;
