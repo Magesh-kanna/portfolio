@@ -3,70 +3,83 @@
     "siteTitle": "Magesh K | SDE & Mobile App Developer",
     "siteDescription": "Portfolio of Magesh K, a Software Development Engineer specializing in Flutter, iOS, Kotlin Multiplatform, and FinTech solutions.",
     "name": "Magesh K",
-    "title": "SDE | Flutter & iOS Developer",
+    "title": "Mobile Engineer | Flutter Developer | iOS Developer",
     "location": "Bengaluru & Chennai, India",
     "email": "codermagesh@gmail.com",
     "availability": "Available for work",
-    "heroDescription": "Passionate mobile app developer specializing in Flutter, iOS Native, and FinTech solutions. I build impactful apps, improve UX and performance, and integrate innovative features users love.",
-    "aboutLong": "Software Development Engineer with 3+ years of experience building production-ready mobile applications. Currently working at NPST (Banking & Payment Solutions) on Canara Bank's fintech product — building UPI and Mobile banking features. Previously at Thiran Technologies and Doodleblue Innovations, developing Flutter apps with Voice AI integration ('TAM'), Video Call services using ZEGO SDK, and Cognitive Dashboards with real-time mapping. Passionate about mentoring developers, speaking at tech community meetups (Namma Flutter), and shipping high-quality code.",
+    "heroDescription": "Mobile Engineer with 3.5+ years of experience building cross-platform mobile apps for Android and iOS. Skilled in developing responsive UI, scalable architectures, and integrating modern mobile technologies.",
+    "aboutHeading": "Mobile Engineer | Flutter Developer | iOS Developer",
+    "aboutLong": "Mobile Engineer with 3.5+ years of experience building cross-platform mobile apps for Android and iOS. Skilled in developing responsive UI, scalable architectures, and integrating modern mobile technologies.\n\nCurrently working on Canara Bank's Fintech product with a user base of 80 Million+ people. Developed multiple production Flutter applications, built responsive UI and scalable mobile architectures, and worked with APIs, Firebase, and enterprise mobile environments.\n\nCurrently exploring advanced Flutter patterns, native iOS development, and Fintech Operations.",
     "profilePhoto": "assets/magesh-cover.png",
     "resumeUrl": "assets/resume.pdf",
     "subtitles": [
-      "Software Development Engineer",
-      "Flutter & iOS Developer",
-      "FinTech & Mobile Banking Builder",
-      "Gold Medalist & Community Speaker"
+      "Mobile Engineer",
+      "Flutter Developer",
+      "iOS Developer",
+      "Fintech Specialist (80M+ Users)",
+      "Gold Medalist & Speaker"
     ],
-    "languages": ["English", "Tamil"]
+    "languages": ["English", "Tamil", "Hindi (Elementary)"]
   },
 
   "social": [
-    { "platform": "LinkedIn",  "url": "https://www.linkedin.com/in/mageshkanna/", "icon": "fab fa-linkedin-in", "label": "LinkedIn Profile", "followers": "7K+" },
-    { "platform": "GitHub",    "url": "https://github.com/Magesh-kanna",          "icon": "fab fa-github",      "label": "GitHub Profile",   "followers": "37 Repos" },
-    { "platform": "Twitter",   "url": "https://x.com/codermagesh",                 "icon": "fab fa-twitter",     "label": "Twitter Profile" },
-    { "platform": "Medium",    "url": "https://medium.com/@codermagesh",          "icon": "fab fa-medium-m",    "label": "Medium Blog" },
-    { "platform": "Instagram", "url": "https://instagram.com/Magesh_kanna",       "icon": "fab fa-instagram",   "label": "Instagram Profile" },
-    { "platform": "Facebook",  "url": "https://facebook.com/Magesh.kanna.007",   "icon": "fab fa-facebook-f",  "label": "Facebook Profile" }
+    { "platform": "LinkedIn",  "url": "https://www.linkedin.com/in/mageshkanna/",  "icon": "fab fa-linkedin-in", "label": "LinkedIn Profile", "followers": "7K+" },
+    { "platform": "GitHub",    "url": "https://github.com/Magesh-kanna",           "icon": "fab fa-github",      "label": "GitHub Profile",   "followers": "37 Repos" },
+    { "platform": "Twitter",   "url": "https://x.com/codermagesh",                  "icon": "fab fa-twitter",     "label": "Twitter Profile" },
+    { "platform": "Medium",    "url": "https://medium.com/@codermagesh",           "icon": "fab fa-medium-m",    "label": "Medium Blog" },
+    { "platform": "Instagram", "url": "https://www.instagram.com/developer_magesh/","icon": "fab fa-instagram",   "label": "Instagram Profile" },
+    { "platform": "Facebook",  "url": "https://facebook.com/Magesh.kanna.007",    "icon": "fab fa-facebook-f",  "label": "Facebook Profile" }
   ],
 
   "stats": [
     { "value": "10+", "label": "Projects Completed" },
-    { "value": "3+", "label": "Years of Experience" },
-    { "value": "2", "label": "Companies Worked" },
-    { "value": "10+", "label": "Happy Clients (incl. Canara Fintech)" }
+    { "value": "3.5+", "label": "Years of Experience" },
+    { "value": "3", "label": "Companies Worked" },
+    { "value": "10+", "label": "Happy Clients (incl. Canara Bank)" }
   ],
 
   "skills": {
     "tags": [
-      "Flutter", "Dart", "iOS", "Swift", "SwiftUI", "Android", "Kotlin", "Kotlin Multiplatform",
-      "Firebase", "REST APIs", "FinTech & UPI", "SQLite / Drift", "Hive", "Riverpod", "BLoC",
-      "Provider", "GoRouter", "Voice AI", "ZEGO SDK", "IBM Maximo", "Git", "GitHub", "Figma",
-      "Postman", "App Store", "Play Store", "CI/CD", "Unit Testing", "Performance Optimization",
-      "Mentorship", "Community Speaker"
+      "Flutter", "Dart", "Swift", "SwiftUI", "Flutter Web", "MCP", "API Integration",
+      "Firebase", "UI Implementation", "Performance Optimisation", "MDM", "SQL",
+      "NoSQL", "PostgreSQL", "Speaker", "Tutor", "iOS", "Android", "Kotlin",
+      "Kotlin Multiplatform", "FinTech & UPI", "SQLite / Drift", "Hive", "Riverpod",
+      "BLoC", "Provider", "GoRouter", "Voice AI", "ZEGO SDK", "IBM Maximo", "Git",
+      "Figma", "Postman", "App Store", "Play Store"
     ],
     "technical": [
-      { "name": "Flutter & Dart", "level": 92 },
-      { "name": "Firebase & Backend Integration", "level": 88 },
-      { "name": "REST APIs & FinTech (UPI)", "level": 88 },
-      { "name": "Riverpod & State Management", "level": 85 },
-      { "name": "iOS / Swift / SwiftUI", "level": 80 },
-      { "name": "SQLite / Drift / Hive", "level": 80 },
-      { "name": "Kotlin / KMP / Android", "level": 75 },
-      { "name": "Voice AI & ZEGO SDK Integration", "level": 85 }
+      { "name": "Flutter & Dart", "level": 95 },
+      { "name": "iOS / Swift / SwiftUI", "level": 85 },
+      { "name": "API Integration & Firebase", "level": 90 },
+      { "name": "Riverpod & State Management", "level": 88 },
+      { "name": "Performance Optimisation & UI", "level": 90 },
+      { "name": "SQL / NoSQL / PostgreSQL", "level": 80 },
+      { "name": "Kotlin / KMP / Android", "level": 78 },
+      { "name": "MCP & AI Mobile Tools", "level": 85 }
     ],
     "soft": [
-      { "name": "Presentation & Tech Talk Speaking", "level": 92 },
-      { "name": "Developer Mentorship & Leadership", "level": 90 },
-      { "name": "Problem Solving & Architecture", "level": 88 },
+      { "name": "Tech Talk Speaking & Workshops", "level": 95 },
+      { "name": "Developer Mentorship & Tutoring", "level": 92 },
+      { "name": "Scalable Architecture & Design", "level": 90 },
       { "name": "Team Collaboration & Agile", "level": 90 }
     ]
+  },
+
+  "product": {
+    "title": "Itineery AI",
+    "tagline": "Your Personalized, Beautifully Animated AI Travel Planner",
+    "description": "Plan Smarter. Explore Further. Chat with AI to build day-by-day itineraries, discover hidden gems in any city, and manage your entire trip in one beautiful mobile app.",
+    "image": "assets/itineery-ai.png",
+    "playstore": "https://play.google.com/store/apps/details?id=com.universeappstudio.itineery",
+    "website": "https://itineery-ai.vercel.app/",
+    "badges": ["AI Travel Planner", "Flutter", "Day-by-Day Itineraries", "Hidden Gems", "Play Store"]
   },
 
   "projects": [
     {
       "name": "Namma Wallet",
       "description": "Community Flutter wallet project with 57 stars and 67 forks. Contributed to the Namma Flutter open-source initiative for modern mobile fintech UI.",
-      "image": "img/port1.jpg",
+      "image": "assets/nammawallet.png",
       "tags": ["Flutter", "Open Source", "FinTech", "Dart"],
       "github": "https://github.com/Namma-Flutter/namma_wallet",
       "live": "",
@@ -76,7 +89,7 @@
     {
       "name": "NammaFlutter.com",
       "description": "Official open-source community platform for Namma Flutter Chennai — connecting Flutter developers, hosting events, and sharing resources.",
-      "image": "img/port7.jpg",
+      "image": "assets/nammaflutter.png",
       "tags": ["Flutter Web", "Open Source", "Community", "Dart"],
       "github": "https://github.com/Namma-Flutter",
       "live": "https://nammaflutter.com",
@@ -95,7 +108,7 @@
     },
     {
       "name": "Canara FinTech Mobile Banking",
-      "description": "Enterprise mobile banking and UPI payment solutions at NPST, focusing on secure transactions, Voice AI assistant, and cognitive dashboards.",
+      "description": "Enterprise mobile banking and UPI payment solutions at NPST for Canara Bank (80M+ user base), focusing on secure transactions, Voice AI assistant, and cognitive dashboards.",
       "image": "img/port3.jpg",
       "tags": ["Flutter", "FinTech", "UPI", "Voice AI", "IBM Maximo"],
       "github": "https://github.com/Magesh-kanna",
@@ -200,8 +213,8 @@
       "role": "Software Development Engineer",
       "company": "NPST (Network People Services Technologies Ltd.)",
       "location": "Bengaluru, India",
-      "description": "Working on Canara Bank's fintech product — building UPI and Mobile banking features. Integrated Voice Assistant 'TAM' with AI Model for offline capabilities, Video Call services using ZEGO SDK, and Cognitive Dashboard with real-time mapping.",
-      "tags": ["Flutter", "FinTech", "UPI", "IBM Maximo", "Voice AI"]
+      "description": "Working on Canara Bank's fintech product with a user base of 80 Million+ people — building UPI and Mobile banking features. Integrated Voice Assistant 'TAM' with AI Model for offline capabilities, Video Call services using ZEGO SDK, and Cognitive Dashboard with real-time mapping.",
+      "tags": ["Flutter", "FinTech", "UPI (80M+ Users)", "Canara Bank", "Voice AI"]
     },
     {
       "duration": "Feb 2024 – Sep 2025",
@@ -261,7 +274,7 @@
     "items": [
       { "label": "Location", "value": "Bengaluru & Chennai, India", "icon": "fas fa-map-marker-alt" },
       { "label": "Email",    "value": "codermagesh@gmail.com",    "icon": "fas fa-envelope", "href": "mailto:codermagesh@gmail.com" },
-      { "label": "Languages", "value": "English, Tamil",          "icon": "fas fa-language" },
+      { "label": "Languages", "value": "English, Tamil, Hindi (Elementary)", "icon": "fas fa-language" },
       { "label": "Education", "value": "MCA — Gold Medalist (9.0 GPA)", "icon": "fas fa-graduation-cap" }
     ]
   }

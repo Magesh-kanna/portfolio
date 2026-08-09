@@ -170,6 +170,7 @@ const CommandPalette = {
       { label: 'Home',       icon: 'fas fa-home',         category: 'nav',      action: () => this._goto('#home') },
       { label: 'About',      icon: 'fas fa-user',          category: 'nav',      action: () => this._goto('#about') },
       { label: 'Skills',     icon: 'fas fa-code',          category: 'nav',      action: () => this._goto('#skills') },
+      { label: 'Product',    icon: 'fas fa-mobile-alt',    category: 'nav',      action: () => this._goto('#product') },
       { label: 'Projects',   icon: 'fas fa-briefcase',     category: 'nav',      action: () => this._goto('#projects') },
       { label: 'Blogs',      icon: 'far fa-newspaper',     category: 'nav',      action: () => this._goto('#blogs') },
       { label: 'Featured',   icon: 'fas fa-star',          category: 'nav',      action: () => this._goto('#featured') },
@@ -535,6 +536,7 @@ const Renderer = {
     this.renderHero(data);
     this.renderAbout(data);
     this.renderSkills(data);
+    this.renderProduct(data);
     this.renderProjects(data);
     this.renderBlogs(data);
     this.renderExperience(data);
@@ -598,8 +600,11 @@ const Renderer = {
   renderAbout(data) {
     const m = data.meta;
 
+    const headingEl = $('#about-heading');
+    if (headingEl && m.aboutHeading) headingEl.textContent = m.aboutHeading;
+
     const longEl = $('#about-long');
-    if (longEl) longEl.textContent = m.aboutLong;
+    if (longEl) longEl.innerHTML = m.aboutLong.replace(/\n/g, '<br>');
 
     const tagsWrap = $('#about-tags');
     if (tagsWrap && data.skills?.tags) {
@@ -665,6 +670,31 @@ const Renderer = {
         </div>
       `).join('');
     }
+  },
+
+  /* ── Product ─ */
+  renderProduct(data) {
+    const hero = $('#product-hero');
+    const p = data.product;
+    if (!hero || !p) return;
+
+    hero.innerHTML = `
+      <div class="product-info">
+        <div class="product-badges">
+          ${p.badges.map(b => `<span class="product-badge-item">${b}</span>`).join('')}
+        </div>
+        <h3 class="product-name-title">${p.title}</h3>
+        <p class="product-tagline">${p.tagline}</p>
+        <p class="product-description-text">${p.description}</p>
+        <div class="product-cta-group">
+          ${p.playstore ? `<a href="${p.playstore}" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-google-play"></i> Play Store</a>` : ''}
+          ${p.website   ? `<a href="${p.website}"   target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-globe"></i> App Website</a>` : ''}
+        </div>
+      </div>
+      <div class="product-image-wrap">
+        <img src="${p.image}" alt="${p.title}" loading="lazy" />
+      </div>
+    `;
   },
 
   /* ── Projects ─ */
