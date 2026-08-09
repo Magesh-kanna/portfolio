@@ -1,0 +1,32 @@
+[
+  {
+    "id": "gb-1",
+    "name": "Arun Kumar",
+    "role": "Senior iOS Engineer @ TechCorp",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Arun",
+    "message": "Loved the Flutter architecture work and TAM voice assistant integration! Super clean portfolio and impressive projects.",
+    "rating": 5,
+    "date": "2026-02-05",
+    "approved": true
+  },
+  {
+    "id": "gb-2",
+    "name": "Priya Sharma",
+    "role": "Product Manager @ FinTech Inc",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
+    "message": "Itineery AI app looks incredible! The day-by-day travel itinerary generation feature is smooth and super intuitive.",
+    "rating": 5,
+    "date": "2026-02-01",
+    "approved": true
+  },
+  {
+    "id": "gb-3",
+    "name": "Karthik Raja",
+    "role": "Flutter Lead @ NammaFlutter Community",
+    "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Karthik",
+    "message": "Awesome guest lecture at S.A. Engineering College! The students learned a lot about real-world mobile app development.",
+    "rating": 5,
+    "date": "2026-01-28",
+    "approved": true
+  }
+]

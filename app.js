@@ -703,11 +703,10 @@ const Renderer = {
         <div class="product-cta-group">
           ${p.playstore ? `<a href="${p.playstore}" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-google-play"></i> Play Store</a>` : ''}
           ${p.website   ? `<a href="${p.website}"   target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-globe"></i> App Website</a>` : ''}
+          <a class="btn btn-secondary btn-ios-soon" href="#" onclick="return false;" title="Coming soon on iOS App Store">
+            <i class="fab fa-apple"></i> App Store <span class="ios-soon-badge">Coming Soon</span>
+          </a>
         </div>
-        <a class="btn btn-appstore-soon" href="#" onclick="return false;" title="Coming soon on iOS App Store">
-          <i class="fab fa-apple"></i>
-          <span><small>Coming soon on</small><br/>iOS App Store</span>
-        </a>
       </div>
       <div class="product-image-wrap">
         <div class="iphone-carousel" id="product-iphone-carousel">
@@ -908,6 +907,149 @@ const Renderer = {
 
 
 /* ════════════════════════════════════════════════
+   GUESTBOOK MANAGER
+════════════════════════════════════════════════ */
+const GuestbookManager = {
+  storageKey: 'mk_portfolio_guestbook_entries',
+  entries: [],
+
+  async init() {
+    const feed = $('#guestbook-feed');
+    const countEl = $('#gb-count');
+    const form = $('#guestbook-form');
+
+    if (!feed) return;
+
+    // Load initial from guestbook.json
+    let initialEntries = [];
+    try {
+      const res = await fetch('guestbook.json');
+      if (res.ok) {
+        initialEntries = await res.json();
+      }
+    } catch (err) {
+      console.warn('Could not load guestbook.json:', err);
+    }
+
+    // Load user stored entries
+    let storedEntries = [];
+    try {
+      const stored = localStorage.getItem(this.storageKey);
+      if (stored) {
+        storedEntries = JSON.parse(stored);
+      }
+    } catch (err) {
+      console.warn('Could not read guestbook localStorage:', err);
+    }
+
+    // Merge (user submissions first, then initial)
+    const all = [...storedEntries, ...initialEntries];
+    // Filter duplicates by id
+    const seen = new Set();
+    this.entries = all.filter(item => {
+      if (seen.has(item.id)) return false;
+      seen.add(item.id);
+      return true;
+    });
+
+    this.render(feed, countEl);
+
+    // Form submission
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const nameInput = $('#gb-name');
+        const roleInput = $('#gb-role');
+        const ratingInput = $('#gb-rating');
+        const msgInput = $('#gb-message');
+
+        const name = nameInput.value.trim();
+        const role = roleInput.value.trim() || 'Visitor';
+        const rating = parseInt(ratingInput.value, 10) || 5;
+        const message = msgInput.value.trim();
+
+        if (!name || !message) return;
+
+        const newEntry = {
+          id: 'gb-' + Date.now(),
+          name,
+          role,
+          avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}`,
+          message,
+          rating,
+          date: new Date().toISOString().split('T')[0],
+          approved: true
+        };
+
+        // Prepend new entry
+        this.entries.unshift(newEntry);
+        storedEntries.unshift(newEntry);
+
+        try {
+          localStorage.setItem(this.storageKey, JSON.stringify(storedEntries));
+        } catch (err) {
+          console.error('Failed to save to localStorage:', err);
+        }
+
+        this.render(feed, countEl);
+
+        // Reset form
+        form.reset();
+
+        // Show feedback message
+        const btn = $('.btn-gb-submit', form);
+        if (btn) {
+          const origText = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-check"></i> Thank you! Entry Published';
+          btn.style.background = '#22c55e';
+          btn.style.borderColor = '#22c55e';
+          btn.style.color = '#000';
+          setTimeout(() => {
+            btn.innerHTML = origText;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+            btn.style.color = '';
+          }, 3000);
+        }
+      });
+    }
+  },
+
+  render(feed, countEl) {
+    if (!feed) return;
+    if (countEl) countEl.textContent = this.entries.length;
+
+    if (this.entries.length === 0) {
+      feed.innerHTML = `<p class="gb-empty">No guestbook entries yet. Be the first to leave feedback!</p>`;
+      return;
+    }
+
+    feed.innerHTML = this.entries.map(entry => {
+      const stars = '★'.repeat(entry.rating) + '☆'.repeat(5 - entry.rating);
+      return `
+        <div class="gb-card">
+          <div class="gb-card-header">
+            <div class="gb-author-info">
+              <img src="${entry.avatar}" alt="${entry.name}" class="gb-avatar" loading="lazy" />
+              <div>
+                <h4 class="gb-name">${entry.name}</h4>
+                <p class="gb-role">${entry.role}</p>
+              </div>
+            </div>
+            <div class="gb-meta">
+              <span class="gb-stars">${stars}</span>
+              <span class="gb-date">${entry.date}</span>
+            </div>
+          </div>
+          <p class="gb-message">${entry.message}</p>
+        </div>
+      `;
+    }).join('');
+  }
+};
+
+
+/* ════════════════════════════════════════════════
    MAIN — Bootstrap everything
 ════════════════════════════════════════════════ */
 (async function main() {
@@ -926,6 +1068,7 @@ const Renderer = {
   ExperienceTabs.init();
   ProjectFilter.init();
   FeaturedCarousel.init(data);
+  GuestbookManager.init();
   BackToTop.init();
 
   ScrollReveal.init();

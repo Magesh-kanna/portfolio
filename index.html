@@ -74,8 +74,10 @@
         <a href="#blogs" class="nav-link" data-section="blogs">Blogs</a>
         <a href="#featured" class="nav-link" data-section="featured">Featured</a>
         <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#guestbook" class="nav-link" data-section="guestbook">Guestbook</a>
         <a href="#contact" class="nav-link" data-section="contact">Contact</a>
       </nav>
+
 
       <div class="nav-actions">
         <button id="cmd-btn" class="cmd-trigger" aria-label="Open Command Palette" title="Command Palette (Ctrl+K)">
@@ -348,8 +350,65 @@
     </section>
 
     <!-- ╔══════════════════════════════════╗
+         ║        GUESTBOOK SECTION        ║
+         ╚══════════════════════════════════╝ -->
+    <section id="guestbook" class="section guestbook-section" aria-label="Guestbook">
+      <div class="section-container">
+        <div class="section-header reveal">
+          <p class="section-tag">// community feedback</p>
+          <h2 class="section-title">Public <span class="accent">Guestbook</span></h2>
+          <p class="section-subtitle">Leave a message, review, or feedback! Submissions update live on the site.</p>
+        </div>
+
+        <div class="guestbook-layout">
+          <!-- Submission Form -->
+          <div class="guestbook-form-card reveal">
+            <h3 class="gb-form-title"><i class="fas fa-edit"></i> Leave Your Feedback</h3>
+            <form id="guestbook-form" class="gb-form">
+              <div class="form-group">
+                <label for="gb-name">Your Name *</label>
+                <input type="text" id="gb-name" required placeholder="e.g., Alex Rivera" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label for="gb-role">Role / Company (Optional)</label>
+                <input type="text" id="gb-role" placeholder="e.g., Flutter Engineer @ Tech" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label for="gb-rating">Rating</label>
+                <select id="gb-rating" class="form-input">
+                  <option value="5">⭐⭐⭐⭐⭐ (5/5 Outstanding)</option>
+                  <option value="4">⭐⭐⭐⭐ (4/5 Great)</option>
+                  <option value="3">⭐⭐⭐ (3/5 Good)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="gb-message">Your Message / Feedback *</label>
+                <textarea id="gb-message" required rows="4" placeholder="Write your feedback or note here..." class="form-input"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-gb-submit">
+                Submit Entry <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Guestbook Entries Feed -->
+          <div class="guestbook-feed-wrap reveal reveal-right">
+            <div class="gb-feed-header">
+              <h3><i class="fas fa-comments"></i> Recent Entries (<span id="gb-count">0</span>)</h3>
+              <span class="gb-live-badge"><i class="fas fa-circle"></i> Live Updating</span>
+            </div>
+            <div id="guestbook-feed" class="guestbook-feed">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════╗
          ║        CONTACT SECTION          ║
          ╚══════════════════════════════════╝ -->
+
     <section id="contact" class="section contact-section" aria-label="Contact">
       <div class="section-container">
         <div class="section-header reveal">
@@ -399,8 +458,10 @@
           <a href="#blogs">Blogs</a>
           <a href="#featured">Featured</a>
           <a href="#experience">Experience</a>
+          <a href="#guestbook">Guestbook</a>
           <a href="#contact">Contact</a>
           <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" download>Resume</a>
+
         </div>
       </div>
       <div class="footer-bottom">
