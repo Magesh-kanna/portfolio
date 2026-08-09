@@ -701,11 +701,10 @@ const Renderer = {
 
       <div class="product-stage-3d">
         <div class="stage-glow"></div>
-        <div class="dual-device-container">
+        <div class="dual-device-container" id="stage-device-container">
           <!-- Background Offset Device -->
-          <div class="device-mockup back-device">
+          <div class="device-mockup back-device" id="stage-back-device">
             <div class="device-bezel">
-              <div class="device-island"></div>
               <div class="device-screen">
                 <img id="stage-back-img" src="${carouselImages[1] || carouselImages[0]}" alt="App Preview Back" loading="lazy" />
               </div>
@@ -713,9 +712,8 @@ const Renderer = {
           </div>
 
           <!-- Foreground Main Floating Device -->
-          <div class="device-mockup main-device">
+          <div class="device-mockup main-device" id="stage-main-device">
             <div class="device-bezel">
-              <div class="device-island"></div>
               <div class="device-screen">
                 <img id="stage-main-img" src="${carouselImages[0]}" alt="App Preview Main" loading="lazy" />
               </div>
@@ -735,39 +733,52 @@ const Renderer = {
       </div>
     `;
 
-    // 3D Stage Auto-Carousel & Pill Handler
+    // 3D Stage Auto-Carousel & Card Flip Handler
     if (carouselImages.length > 1) {
-      const mainImg = $('#stage-main-img', hero);
-      const backImg = $('#stage-back-img', hero);
-      const pills   = $$('.stage-pill', hero);
-      let current   = 0;
+      const mainDevice = $('#stage-main-device', hero);
+      const backDevice = $('#stage-back-device', hero);
+      const mainImg    = $('#stage-main-img', hero);
+      const backImg    = $('#stage-back-img', hero);
+      const pills      = $$('.stage-pill', hero);
+      let current      = 0;
+      let isAnimating  = false;
 
       const goTo = (idx) => {
-        if (idx === current) return;
+        if (idx === current || isAnimating) return;
+        isAnimating = true;
+
         pills[current].classList.remove('active');
         current = (idx + carouselImages.length) % carouselImages.length;
         pills[current].classList.add('active');
 
         const nextIdx = (current + 1) % carouselImages.length;
 
-        // Smooth cross-fade animation
-        if (mainImg) {
-          mainImg.style.opacity = '0';
-          mainImg.style.transform = 'scale(0.96)';
-          setTimeout(() => {
+        // 3D Card Flip + Fade Out/In animation
+        if (mainDevice) mainDevice.classList.add('card-flipping');
+        if (backDevice) backDevice.classList.add('card-flipping-back');
+
+        // Fade images out
+        if (mainImg) mainImg.style.opacity = '0';
+        if (backImg) backImg.style.opacity = '0';
+
+        // Swap image halfway through 3D flip (250ms)
+        setTimeout(() => {
+          if (mainImg) {
             mainImg.src = carouselImages[current];
             mainImg.style.opacity = '1';
-            mainImg.style.transform = 'scale(1)';
-          }, 250);
-        }
-
-        if (backImg) {
-          backImg.style.opacity = '0';
-          setTimeout(() => {
+          }
+          if (backImg) {
             backImg.src = carouselImages[nextIdx];
             backImg.style.opacity = '0.65';
-          }, 250);
-        }
+          }
+        }, 250);
+
+        // Reset flip class after complete flip (550ms)
+        setTimeout(() => {
+          if (mainDevice) mainDevice.classList.remove('card-flipping');
+          if (backDevice) backDevice.classList.remove('card-flipping-back');
+          isAnimating = false;
+        }, 550);
       };
 
       pills.forEach(pill => {
@@ -775,11 +786,11 @@ const Renderer = {
           const idx = parseInt(pill.dataset.idx, 10);
           goTo(idx);
           clearInterval(stageTimer);
-          stageTimer = setInterval(() => goTo(current + 1), 3600);
+          stageTimer = setInterval(() => goTo(current + 1), 3800);
         });
       });
 
-      let stageTimer = setInterval(() => goTo(current + 1), 3600);
+      let stageTimer = setInterval(() => goTo(current + 1), 3800);
     }
   },
 
