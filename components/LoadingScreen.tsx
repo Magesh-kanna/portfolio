@@ -5,15 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true);
-  const [showContent, setShowContent] = useState(false);
+  const [phase, setPhase] = useState<"text" | "opening" | "done">("text");
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setShowContent(true), 100);
-    const timer2 = setTimeout(() => setIsVisible(false), 2500);
+    // Stage 1: Text shows
+    const textTimer = setTimeout(() => {
+      setPhase("opening");
+    }, 1400);
+
+    // Stage 2: Curtain opens and unmounts
+    const exitTimer = setTimeout(() => {
+      setPhase("done");
+      setIsVisible(false);
+    }, 2200);
 
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearTimeout(textTimer);
+      clearTimeout(exitTimer);
     };
   }, []);
 
@@ -21,46 +29,55 @@ export default function LoadingScreen() {
 
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100]"
-      >
-        {/* Top Curtain */}
+      {phase !== "done" && (
         <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: showContent ? 1 : 0 }}
-          exit={{ scaleY: 0 }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 bg-black z-50 origin-top"
-          style={{ transformOrigin: "50% 0%" }}
-        />
-
-        {/* Bottom Curtain */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: showContent ? 1 : 0 }}
-          exit={{ scaleY: 0 }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
-          className="fixed inset-0 bg-black z-50 origin-bottom"
-          style={{ transformOrigin: "50% 100%" }}
-        />
-
-        {/* Hello Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="fixed inset-0 z-[60] flex items-center justify-center"
+          key="preloader"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="fixed inset-0 z-[9999] pointer-events-none"
         >
-          <div
-            className="text-white text-xl md:text-3xl lg:text-5xl font-regular"
-            style={{ fontFamily: "var(--font-cedarville)" }}
+          {/* Top Curtain */}
+          <motion.div
+            initial={{ scaleY: 1 }}
+            animate={{ scaleY: phase === "opening" ? 0 : 1 }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 bg-[#070708] z-50 origin-top"
+          />
+
+          {/* Bottom Curtain */}
+          <motion.div
+            initial={{ scaleY: 1 }}
+            animate={{ scaleY: phase === "opening" ? 0 : 1 }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 bg-[#070708] z-50 origin-bottom"
+          />
+
+          {/* Hello Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{
+              opacity: phase === "text" ? 1 : 0,
+              y: phase === "text" ? 0 : -15,
+            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="fixed inset-0 z-[60] flex flex-col items-center justify-center pointer-events-none select-none"
           >
-            • hello
-          </div>
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
+              <p
+                className="text-white text-3xl md:text-5xl lg:text-6xl font-normal tracking-wide"
+                style={{ fontFamily: "var(--font-cursive)" }}
+              >
+                • hello
+              </p>
+            </div>
+            <p className="text-neutral-500 font-mono text-xs uppercase tracking-widest mt-4">
+              Magesh Kanna • Portfolio
+            </p>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </AnimatePresence>
   );
 }

@@ -1,33 +1,41 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ArrowUp, Heart, Sparkles } from "lucide-react";
 
 export default function Footer() {
-  return (
-    <footer className="py-8 border-t border-border bg-background">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-muted-foreground text-sm"
-          >
-            © {new Date().getFullYear()} Magesh K. Crafted with{" "}
-            <span className="text-rose-500">❤</span> using Next.js & Tailwind CSS
-          </motion.p>
+  const scrollToTop = () => {
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { duration: 1.5 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-2 text-muted-foreground text-sm"
+  return (
+    <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-[#070709] border-t border-white/[0.08] relative select-none">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Brand & Copyright */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-bold text-white tracking-tight">Magesh Kanna</span>
+            <span className="text-xs text-neutral-500 font-mono">• Portfolio 2026</span>
+          </div>
+          <p
+            className="text-neutral-500 text-sm font-normal"
+            style={{ fontFamily: "var(--font-cursive)" }}
           >
-            <span>Always learning</span>
-            <span className="text-foreground">⚡</span>
-            <span>Always building</span>
-          </motion.div>
+            Crafted with passion for fluid mobile architectures
+          </p>
         </div>
+
+        {/* Back to top button */}
+        <button
+          onClick={scrollToTop}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#131316] border border-white/[0.1] hover:border-white/30 text-neutral-300 hover:text-white text-xs font-mono transition-all cursor-pointer shadow-md group"
+        >
+          <span>Back to top</span>
+          <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform text-rose-400" />
+        </button>
       </div>
     </footer>
   );

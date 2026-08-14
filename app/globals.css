@@ -1,89 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cedarville+Cursive&family=Geist+Mono:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-background: #0a0a0a;
   --color-foreground: #fafafa;
   --color-primary: #e5e5e5;
-  --color-primary-foreground: #fafafa;
-  --color-secondary: #f5f5f5;
-  --color-secondary-foreground: #171717;
-  --color-muted: #f5f5f5;
-  --color-muted-foreground: #a1a1a1;
-  --color-accent: #f5f5f5;
-  --color-accent-foreground: #171717;
-  --color-destructive: #ff6568;
-  --color-border: rgba(255, 255, 255, 0.1);
+  --color-primary-foreground: #0a0a0a;
+  --color-secondary: #171717;
+  --color-secondary-foreground: #f5f5f5;
+  --color-muted: #262626;
+  --color-muted-foreground: #a1a1aa;
+  --color-accent: #27272a;
+  --color-accent-foreground: #fafafa;
+  --color-destructive: #ef4444;
+  --color-border: rgba(255, 255, 255, 0.12);
   --color-input: rgba(255, 255, 255, 0.15);
-  --color-ring: #a1a1a1;
-  --color-card: #ffffff;
+  --color-ring: #a1a1aa;
+  --color-card: #121214;
   --color-card-foreground: #fafafa;
-  --color-popover: #ffffff;
+  --color-popover: #121214;
   --color-popover-foreground: #fafafa;
-
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-300: #d1d5dc;
-  --color-gray-400: #99a1af;
-  --color-gray-500: #6a7282;
-  --color-gray-600: #4a5565;
-  --color-gray-700: #364153;
-  --color-gray-800: #1e2939;
-  --color-gray-900: #101828;
-
-  --color-blue-400: #54a2ff;
-  --color-blue-500: #3080ff;
-  --color-blue-600: #155dfc;
-
-  --color-cyan-500: #00b7d7;
-
-  --color-sky-400: #00bcfe;
-  --color-sky-500: #00a5ef;
-
-  --color-indigo-400: #7d87ff;
-  --color-indigo-500: #625fff;
-
-  --color-violet-400: #a685ff;
-  --color-violet-500: #8d54ff;
-
-  --color-purple-500: #ac4bff;
-  --color-purple-600: #9810fa;
-
-  --color-fuchsia-400: #ec6cff;
-  --color-fuchsia-500: #e12afb;
-
-  --color-pink-500: #f6339a;
 
   --color-rose-400: #ff667f;
   --color-rose-500: #ff2357;
-
-  --color-red-600: #e40014;
-  --color-red-900: #82181a;
-  --color-red-950: #460809;
-
-  --color-orange-500: #fe6e00;
-  --color-orange-600: #f05100;
-
-  --color-amber-300: #ffd236;
-  --color-amber-400: #fcbb00;
-  --color-amber-500: #f99c00;
-
+  --color-purple-500: #ac4bff;
+  --color-purple-600: #9810fa;
+  --color-indigo-400: #7d87ff;
+  --color-indigo-500: #625fff;
   --color-emerald-400: #00d294;
   --color-emerald-500: #00bb7f;
-  --color-emerald-700: #007956;
-  --color-emerald-900: #004e3b;
-
-  --color-teal-500: #00baa7;
+  --color-amber-400: #fcbb00;
+  --color-cyan-500: #00b7d7;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+:root {
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-cursive: 'Cedarville Cursive', cursive;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', monospace;
 }
 
-.animate-marquee {
-  animation: marquee var(--duration, 20s) linear infinite;
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: #0a0a0a;
+  color: #fafafa;
+  font-family: var(--font-sans);
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-cursive {
+  font-family: var(--font-cursive);
+}
+
+.glass-panel {
+  background: rgba(18, 18, 20, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(26, 26, 30, 0.85);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(244, 63, 94, 0.15);
+}
+
+.glow-card {
+  position: relative;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, rgba(244, 63, 94, 0.2), rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.2));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.glow-card:hover::after {
+  opacity: 1;
+}
+
+/* Smooth Marquee */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 30s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 30s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Equalizer Bars */
+@keyframes sound-bar-1 {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+@keyframes sound-bar-2 {
+  0%, 100% { height: 14px; }
+  50% { height: 6px; }
+}
+@keyframes sound-bar-3 {
+  0%, 100% { height: 8px; }
+  50% { height: 18px; }
+}
+
+.sound-bar-1 { animation: sound-bar-1 0.8s ease-in-out infinite; }
+.sound-bar-2 { animation: sound-bar-2 0.7s ease-in-out infinite; }
+.sound-bar-3 { animation: sound-bar-3 0.9s ease-in-out infinite; }
+
+/* Grid Background */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Noise Texture Overlay */
+.bg-noise {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+

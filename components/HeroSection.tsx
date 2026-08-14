@@ -1,195 +1,286 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, Sparkles, MapPin, Clock, FileText, Code2, Layers } from "lucide-react";
+import Image from "next/image";
 
 interface HeroSectionProps {
-  greeting: string;
-  name: string;
-  tagline: string;
-  description: string;
-  profileImage: string;
-  circularText: string;
+  greeting?: string;
+  name?: string;
+  tagline?: string;
+  description?: string;
+  profileImage?: string;
+  circularText?: string;
 }
 
 export default function HeroSection({
-  greeting,
-  name,
-  tagline,
-  description,
-  profileImage,
-  circularText,
+  name = "Magesh Kanna",
+  tagline = "Mobile Engineer | Flutter & iOS Specialist",
+  description = "Software Development Engineer with 3.5+ years experience building cross-platform mobile apps for Android & iOS. Currently powering Canara Bank's FinTech ecosystem (80M+ Users) at NPST.",
+  profileImage = "/assets/mageshk-cover-v2.png",
+  circularText = "• MOBILE ENGINEER • FLUTTER & IOS SPECIALIST • FINTECH 80M+ USERS ",
 }: HeroSectionProps) {
-  const circularTextRef = useRef<HTMLDivElement>(null);
+  const [timeIST, setTimeIST] = useState<string>("");
 
+  // Live India Time Clock
   useEffect(() => {
-    const container = circularTextRef.current;
-    if (!container) return;
+    const updateTime = () => {
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
+      setTimeIST(new Intl.DateTimeFormat("en-US", options).format(new Date()));
+    };
 
-    const text = container.querySelector(".circular-text");
-    if (!text) return;
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-    const spans = text.querySelectorAll("span");
-    const radius = 90;
+  // 3D Card Tilt Parallax State
+  const cardRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-    spans.forEach((span, index) => {
-      const angle = (360 / spans.length) * index;
-      span.style.transform = `rotate(${angle}deg) translate(0, -${radius}px)`;
-    });
-  }, [circularText]);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [12, -12]), {
+    stiffness: 250,
+    damping: 25,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-12, 12]), {
+    stiffness: 250,
+    damping: 25,
+  });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const x = (e.clientX - rect.left) / width - 0.5;
+    const y = (e.clientY - rect.top) / height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(element, { offset: -80, duration: 1.2 });
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   const letters = circularText.split("");
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen relative flex items-center justify-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#0a0a0a]"
     >
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0wIDEwaDQwTTEwIDB2NDAiIHN0cm9rZT0iIzI2MjYyNiIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMyIvPgo8L3N2Zz4=')] opacity-30" />
+      {/* Background Decorative Grids and Radial Glows */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-rose-500/10 via-purple-600/10 to-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-10 right-10 w-96 h-96 bg-rose-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px]" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left Content */}
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Column: Hero Typography & Info */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex-1 text-center lg:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-muted-foreground text-lg mb-4"
-            >
-              {greeting}
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
-              style={{ fontFamily: "var(--font-big-shoulders)" }}
-            >
-              <span className="text-foreground">{name.split(" ")[0]}</span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-500 to-indigo-500">
-                {name.split(" ")[1]}
+            {/* Status Pill */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md mb-6 hover:border-white/20 transition-all">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-            </motion.h1>
+              <span className="text-xs text-neutral-300 font-mono tracking-tight">
+                Available for full-time roles & consultations
+              </span>
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-xl md:text-2xl text-rose-500 mb-6 font-mono"
+            {/* Cursive Subtitle Accent */}
+            <p
+              className="text-rose-400 text-2xl sm:text-3xl font-normal mb-2 tracking-wide select-none"
+              style={{ fontFamily: "var(--font-cursive)" }}
             >
-              {tagline}
-            </motion.p>
+              Crafting fluid mobile experiences
+            </p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-muted-foreground text-lg max-w-lg leading-relaxed"
+            {/* Main Display Headline */}
+            <h1
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight uppercase text-white leading-none mb-6"
+              style={{ fontFamily: "var(--font-display)" }}
             >
+              MAGESH <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-400 to-indigo-400">KANNA</span>
+            </h1>
+
+            {/* Role & Bio */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-6">
+              <span className="px-3 py-1 rounded-lg bg-[#18181b] border border-white/[0.08] text-xs font-mono text-neutral-300">
+                ⚡ SDE • Mobile Engineer
+              </span>
+              <span className="px-3 py-1 rounded-lg bg-[#18181b] border border-white/[0.08] text-xs font-mono text-neutral-300">
+                📱 Flutter & iOS
+              </span>
+              <span className="px-3 py-1 rounded-lg bg-[#18181b] border border-white/[0.08] text-xs font-mono text-neutral-300">
+                🏦 FinTech (80M+ Users)
+              </span>
+            </div>
+
+            <p className="text-neutral-400 text-base sm:text-lg max-w-xl leading-relaxed mb-8">
               {description}
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start"
-            >
-              <a
-                href="#projects"
-                className="px-6 py-3 bg-foreground text-background font-semibold rounded-xl hover:bg-foreground/90 transition-colors"
+            {/* Action CTA Buttons */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+              <button
+                onClick={() => scrollTo("projects")}
+                className="group relative px-7 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition-all flex items-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.2)] cursor-pointer"
               >
-                View Projects
-              </a>
-              <a
-                href="#contact"
-                className="px-6 py-3 border border-border text-foreground font-semibold rounded-xl hover:border-foreground/30 transition-colors"
-              >
-                Contact Me
-              </a>
-            </motion.div>
-          </motion.div>
+                <span>Explore Works</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </button>
 
-          {/* Right Content - Profile Image with Circular Text */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-            {/* Circular Text */}
-            <div
-              ref={circularTextRef}
-              className="circular-text absolute inset-0 flex items-center justify-center"
-              style={{ width: "280px", height: "280px" }}
-            >
-              <div className="circular-text relative w-full h-full animate-[spin_20s_linear_infinite]">
-                {letters.map((letter, index) => (
-                  <span
-                    key={index}
-                    className="absolute left-1/2 top-0 text-xs text-foreground font-mono"
-                    style={{
-                      transformOrigin: "0 140px",
-                      transform: `rotate(${(360 / letters.length) * index}deg)`,
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
+              <button
+                onClick={() => scrollTo("contact")}
+                className="px-6 py-3.5 rounded-full bg-[#18181b]/90 hover:bg-[#222226] border border-white/[0.12] text-white font-medium text-sm transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <span>Get in Touch</span>
+              </button>
+
+              <a
+                href="/assets/resume.pdf"
+                download
+                className="px-5 py-3.5 rounded-full bg-transparent hover:bg-white/[0.05] border border-white/[0.08] text-neutral-400 hover:text-white font-mono text-xs transition-all flex items-center gap-2"
+              >
+                <FileText className="w-3.5 h-3.5 text-rose-400" />
+                <span>Resume.pdf</span>
+              </a>
+            </div>
+
+            {/* Live IST Info Strip */}
+            <div className="mt-10 pt-6 border-t border-white/[0.08] flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-neutral-400 font-mono">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                <span>Bengaluru & Chennai, India</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-purple-400" />
+                <span>{timeIST ? `${timeIST} IST` : "India Standard Time"}</span>
               </div>
             </div>
+          </motion.div>
 
-            {/* Profile Image */}
-            <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-2 border-border">
-              <img
-                src={profileImage}
-                alt={name}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
-            </div>
-
-            {/* Status Badge */}
+          {/* Right Column: 3D Interactive Tilted Portrait Card */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center items-center"
+            style={{ perspective: 1000 }}
+          >
             <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1, type: "spring" }}
-              className="absolute -bottom-4 -right-4 px-4 py-2 bg-card border border-border rounded-xl flex items-center gap-2"
+              ref={cardRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+              }}
+              className="relative w-[300px] sm:w-[340px] md:w-[380px] p-4 rounded-3xl bg-[#141417]/90 border border-white/[0.12] backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] cursor-grab active:cursor-grabbing group transition-shadow duration-500 hover:shadow-[0_20px_70px_rgba(244,63,94,0.15)]"
             >
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-xs text-muted-foreground font-mono">Available for work</span>
+              {/* Rotating Circular Badge in Top Corner */}
+              <div className="absolute -top-10 -right-8 w-28 h-28 pointer-events-none z-20 hidden sm:block">
+                <div className="relative w-full h-full animate-[spin_22s_linear_infinite]">
+                  {letters.map((letter, index) => (
+                    <span
+                      key={index}
+                      className="absolute left-1/2 top-0 text-[9px] font-mono uppercase font-semibold text-neutral-400"
+                      style={{
+                        transformOrigin: "0 56px",
+                        transform: `rotate(${(360 / letters.length) * index}deg)`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Portrait Image Container */}
+              <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-neutral-900 border border-white/[0.08]">
+                <Image
+                  src={profileImage}
+                  alt={name}
+                  fill
+                  priority
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 380px"
+                />
+
+                {/* Subtle vignette gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-70" />
+
+                {/* Status Overlay at bottom */}
+                <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-black/70 backdrop-blur-md border border-white/[0.1] flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs font-mono text-neutral-200">SDE @ NPST</span>
+                  </div>
+                  <span className="text-[11px] font-mono text-neutral-400">Canara Bank</span>
+                </div>
+              </div>
+
+              {/* Card Footer Info */}
+              <div className="mt-4 flex items-center justify-between px-1">
+                <div>
+                  <h3 className="text-sm font-semibold text-white">Magesh Kanna</h3>
+                  <p className="text-xs text-neutral-400 font-mono">Mobile Application Engineer</p>
+                </div>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.08]">
+                  <Sparkles className="w-3 h-3 text-rose-400" />
+                  <span className="text-[10px] font-mono text-neutral-300">Gold Medalist</span>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Apple-Style Animated Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-border rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-2 bg-foreground rounded-full" />
-        </motion.div>
+        <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
+          Scroll to explore
+        </span>
+        <div className="w-5 h-9 rounded-full border-2 border-white/20 flex justify-center pt-1.5">
+          <motion.div
+            animate={{ y: [0, 12, 0], opacity: [1, 0.2, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1 h-2 bg-rose-400 rounded-full"
+          />
+        </div>
       </motion.div>
     </section>
   );
