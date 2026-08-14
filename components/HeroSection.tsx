@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Sparkles, MapPin, Clock, FileText, Code2, Layers } from "lucide-react";
+import { ArrowUpRight, Sparkles, MapPin, Clock, FileText } from "lucide-react";
 import Image from "next/image";
 
 interface HeroSectionProps {
@@ -15,11 +15,11 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({
-  name = "Magesh Kanna",
+  name = "Magesh K",
   tagline = "Mobile Engineer | Flutter & iOS Specialist",
-  description = "Software Development Engineer with 3.5+ years experience building cross-platform mobile apps for Android & iOS. Currently powering Canara Bank's FinTech ecosystem (80M+ Users) at NPST.",
+  description = "Software Development Engineer with 3.5+ years experience building cross-platform mobile apps for Android & iOS. Currently powering Canara Bank's FinTech ecosystem (60M+ Users) at NPST.",
   profileImage = "/assets/mageshk-cover-v2.png",
-  circularText = "• MOBILE ENGINEER • FLUTTER & IOS SPECIALIST • FINTECH 80M+ USERS ",
+  circularText = "• MOBILE ENGINEER • FLUTTER & IOS SPECIALIST • FINTECH 60M+ USERS ",
 }: HeroSectionProps) {
   const [timeIST, setTimeIST] = useState<string>("");
 
@@ -127,7 +127,7 @@ export default function HeroSection({
               className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight uppercase text-white leading-none mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              MAGESH <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-400 to-indigo-400">KANNA</span>
+              MAGESH <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-400 to-indigo-400">K</span>
             </h1>
 
             {/* Role & Bio */}
@@ -139,7 +139,7 @@ export default function HeroSection({
                 📱 Flutter & iOS
               </span>
               <span className="px-3 py-1 rounded-lg bg-[#18181b] border border-white/[0.08] text-xs font-mono text-neutral-300">
-                🏦 FinTech (80M+ Users)
+                🏦 FinTech (60M+ Users)
               </span>
             </div>
 
@@ -251,7 +251,7 @@ export default function HeroSection({
               {/* Card Footer Info */}
               <div className="mt-4 flex items-center justify-between px-1">
                 <div>
-                  <h3 className="text-sm font-semibold text-white">Magesh Kanna</h3>
+                  <h3 className="text-sm font-semibold text-white">Magesh K</h3>
                   <p className="text-xs text-neutral-400 font-mono">Mobile Application Engineer</p>
                 </div>
                 <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.08]">

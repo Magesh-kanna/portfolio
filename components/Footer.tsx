@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp, Heart, Sparkles } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -17,7 +17,7 @@ export default function Footer() {
         {/* Brand & Copyright */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-white tracking-tight">Magesh Kanna</span>
+            <span className="text-sm font-bold text-white tracking-tight">Magesh K</span>
             <span className="text-xs text-neutral-500 font-mono">• Portfolio 2026</span>
           </div>
           <p

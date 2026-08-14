@@ -355,7 +355,7 @@ export default function CommandPalette() {
               </div>
               <span className="text-[11px] text-neutral-400 flex items-center gap-1">
                 <Sparkles className="w-3 h-3 text-rose-400" />
-                Magesh Kanna Portfolio
+                Magesh K Portfolio
               </span>
             </div>
           </motion.div>

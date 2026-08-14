@@ -109,7 +109,7 @@ export default function Navbar({ navigation, onOpenCommandPalette }: NavbarProps
             </div>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-white tracking-tight group-hover:text-rose-400 transition-colors">
-                Magesh Kanna
+                Magesh K
               </span>
               <span className="text-[10px] text-neutral-400 font-mono flex items-center gap-1">
                 SDE • Mobile <span className="w-1 h-1 rounded-full bg-emerald-400 inline-block" />

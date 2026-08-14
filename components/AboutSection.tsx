@@ -13,7 +13,7 @@ interface AboutSectionProps {
 
 export default function AboutSection({}: AboutSectionProps) {
   const statsList = [
-    { value: "80M+", label: "Users Impacted", sub: "Canara Bank FinTech" },
+    { value: "60M+", label: "Users Impacted", sub: "Canara Bank FinTech" },
     { value: "3.5+", label: "Years Experience", sub: "Mobile Engineering" },
     { value: "10+", label: "Production Apps", sub: "Android, iOS & Web" },
     { value: "9.0", label: "Gold Medalist GPA", sub: "MCA Anna University" },
@@ -73,7 +73,7 @@ export default function AboutSection({}: AboutSectionProps) {
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-4 leading-snug">
-                Hi, I&apos;m Magesh Kanna — a Software Development Engineer passionate about crafting high-performance mobile architectures.
+                Hi, I&apos;m Magesh K — a Software Development Engineer passionate about crafting high-performance mobile architectures.
               </h3>
 
               <div className="space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed">
@@ -81,7 +81,7 @@ export default function AboutSection({}: AboutSectionProps) {
                   With <span className="text-white font-semibold">3.5+ years of experience</span> across product startups and fintech enterprises, I specialize in building scalable cross-platform mobile apps for Android and iOS using Flutter, Dart, Swift, and modern mobile toolchains.
                 </p>
                 <p>
-                  Currently at <span className="text-white font-semibold">NPST</span>, I develop enterprise UPI and Mobile banking features for <span className="text-rose-400 font-semibold">Canara Bank&apos;s 80 Million+ user base</span>. My work spans offline Voice AI assistants, ZEGO video banking SDKs, Riverpod state patterns, and high-throughput transaction pipelines.
+                  Currently at <span className="text-white font-semibold">NPST</span>, I develop enterprise UPI and Mobile banking features for <span className="text-rose-400 font-semibold">Canara Bank&apos;s 60 Million+ regular user base</span>. My work spans offline Voice AI assistants, ZEGO video banking SDKs, Riverpod state patterns, and high-throughput transaction pipelines.
                 </p>
               </div>
             </div>

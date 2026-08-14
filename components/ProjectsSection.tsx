@@ -59,13 +59,13 @@ const allProjects: Project[] = [
     name: "Canara FinTech Banking",
     category: "fintech",
     featured: true,
-    tagline: "Enterprise UPI & Mobile Banking (80M+ Users)",
+    tagline: "Enterprise UPI & Mobile Banking (60M+ Users)",
     description:
       "Engineered high-concurrency mobile banking features at NPST for Canara Bank. Integrated Voice Assistant 'TAM' with offline AI models, Video Call services using ZEGO SDK, and cognitive transaction dashboards.",
     image: "/assets/github-project-banner.png",
-    tags: ["Flutter", "FinTech", "UPI (80M+ Users)", "Voice AI TAM", "ZEGO SDK", "IBM Maximo"],
+    tags: ["Flutter", "FinTech", "UPI (60M+ Users)", "Voice AI TAM", "ZEGO SDK", "IBM Maximo"],
     github: "https://github.com/Magesh-kanna",
-    badge: "80M+ Users",
+    badge: "60M+ Users",
   },
   {
     id: "namma-wallet",
@@ -296,15 +296,15 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Right Column: Screen Carousel Preview */}
+              {/* Right Column: Full Screenshot View with Proper Ratio */}
               <div className="lg:col-span-6 flex flex-col items-center">
-                <div className="relative w-full max-w-md aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-neutral-950 border border-white/[0.12] shadow-2xl">
+                <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-2xl overflow-hidden bg-[#0a0a0d] border border-white/[0.12] shadow-2xl flex items-center justify-center p-2">
                   {flagship.carouselImages && (
                     <Image
                       src={flagship.carouselImages[activeCarouselIndex] || flagship.image}
                       alt={flagship.name}
                       fill
-                      className="object-cover transition-all duration-500"
+                      className="object-contain p-2 transition-all duration-500 drop-shadow-2xl"
                       sizes="(max-width: 768px) 100vw, 500px"
                     />
                   )}

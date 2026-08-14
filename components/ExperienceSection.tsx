@@ -1,75 +1,145 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin, Sparkles, Building2, ChevronRight } from "lucide-react";
-import Image from "next/image";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Briefcase,
+  Calendar,
+  MapPin,
+  Building2,
+  ChevronDown,
+  ChevronUp,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
 
 interface ExperienceItem {
-  duration: string;
+  id: string;
   role: string;
   company: string;
+  type: string;
+  duration: string;
   location: string;
-  description: string;
+  workType: string;
+  intro: string;
+  items?: string[];
+  notes?: string[];
+  footerNote?: string;
   tags: string[];
-  companyImage?: string;
   current?: boolean;
 }
 
 const experiences: ExperienceItem[] = [
   {
-    duration: "Sep 2025 – Present",
-    role: "Software Development Engineer",
-    company: "NPST (Network People Services Technologies Ltd.)",
-    location: "Bengaluru, India",
-    description:
-      "Working on Canara Bank's flagship FinTech product with an active user base of 80 Million+ people. Architecting core UPI & Mobile banking modules, integrated Voice Assistant 'TAM' with offline AI model capabilities, implemented high-security Video Call banking via ZEGO SDK, and built cognitive dashboards.",
-    tags: ["Flutter", "FinTech", "UPI (80M+ Users)", "Canara Bank", "Voice AI TAM", "ZEGO SDK", "IBM Maximo"],
-    companyImage: "/assets/company-npst.png",
+    id: "npst",
+    role: "Software Development Engineer | Flutter Developer",
+    company: "Network People Services Technologies Ltd. (NPST- Banking and Payment Solutions)",
+    type: "Full-time",
+    duration: "Sep 2025 – Present · 1 yr",
+    location: "Bengaluru, Karnataka, India",
+    workType: "On-site",
+    intro:
+      "In NPST, I'm currently working on Canara Bank's fintech product 🏦 — building Mobile banking features and keeping the existing ones running smooth like butter. 🧈✨",
+    items: [
+      "Fixed Deposit",
+      "Recurring Deposit",
+      "Goal Based Recurring Deposit",
+      "Tax Based Deposit",
+      "Block account",
+      "Apply for Bank Locker",
+      "Public Profident Fund",
+      "Nominee Maintenance",
+      "Angel Family Banking",
+      "Transaction Dispute",
+      "SSY Scheme",
+      "Debit and Credit Card",
+      "Customer ReKYC",
+      "3 factor authentication for making Payments.",
+    ],
+    footerNote: "These features will be used by 60 million+ users regularly 🥺✨",
+    tags: [
+      "Flutter",
+      "Canara Bank (60M+ Users)",
+      "FinTech & UPI",
+      "3-Factor Auth",
+      "Mobile Banking",
+      "Clean Architecture",
+    ],
     current: true,
   },
   {
-    duration: "Feb 2024 – Sep 2025",
+    id: "thiran",
     role: "Mobile Application Developer",
     company: "Thiran Technologies",
-    location: "Chennai, India",
-    description:
-      "Key engineering role delivering high-reliability production Flutter apps. Integrated Voice Assistant 'TAM' using offline Voice SDKs, developed end-to-end video communication channels with ZEGO SDK, and built real-time geolocation cognitive mapping systems.",
-    tags: ["Flutter", "Voice AI", "ZEGO SDK", "Clean Architecture", "REST APIs"],
-    companyImage: "/assets/company-thiran.png",
+    type: "Full-time · 2 yrs 2 mos",
+    duration: "Feb 2024 – Sep 2025 · 1 yr 8 mos",
+    location: "Chennai, Tamil Nadu, India",
+    workType: "On-site",
+    intro:
+      "As a Flutter developer, I'm working on a Product of Thiran and worked on OFFLINE Capability of product.",
+    notes: [
+      "Handled every user transaction in the app with help of having different databases on Mobile as well as Cloud.",
+      "And importantly, i have integrated and improved VOICE ASSISTANT called 'TAM' in TEAM Product Application with the help of Voice SDK. This AI assistant will work on OFFLINE mode as well with the help of AI Model in local mobile app itself.",
+      "Worked on Narrow Weak AI for above functionality.",
+      "And worked on the Video Call services in Flutter App with the help of ZEGO SDK for End to End user Video Call functionality.",
+      "With Clean Architecture and Feature based Architecture for Flutter App.",
+      "T-EAM Mobile App purely based on IBM MAXIMO for the BE Services ( REST API ) and Flutter is used for FE Services.",
+      "Worked on Cognitive Dashboard, a web app which works similar to Google Maps with real-time latitude longitude integration and its specifically for a client.",
+      "I have functional knowledge of IBM Maximo for the Mobile Application Implementation.",
+    ],
+    tags: [
+      "Flutter",
+      "Offline Voice AI 'TAM'",
+      "ZEGO SDK Video",
+      "IBM MAXIMO",
+      "Cognitive Dashboard",
+      "Clean Architecture",
+    ],
   },
   {
-    duration: "Aug 2023 – Feb 2024",
-    role: "Trainee Mobile Developer",
-    company: "Thiran Technologies",
-    location: "Chennai, India",
-    description:
-      "Engineered cross-platform mobile apps for Android and iOS using Riverpod State Management, SQLite/Drift local databases, and GoRouter. Optimized data processing performance using Dart Isolates for background concurrency.",
-    tags: ["Flutter", "Riverpod", "Drift / SQLite", "Isolates", "Adaptive UI"],
-    companyImage: "/assets/company-thiran.png",
-  },
-  {
-    duration: "Jan 2023 – Aug 2023",
+    id: "doodleblue",
     role: "Mobile Application Developer",
     company: "doodleblue Innovations",
-    location: "Chennai, India",
-    description:
-      "Developed client-facing mobile applications for Android, iOS, and Web platforms using Flutter and native Swift with complex REST API integrations.",
-    tags: ["Flutter", "iOS / Swift", "REST APIs", "State Management"],
-    companyImage: "/assets/company-doodleblue.png",
+    type: "Internship",
+    duration: "Jan 2023 – Aug 2023 · 8 mos",
+    location: "Chennai, Tamil Nadu, India",
+    workType: "On-site",
+    intro: "Took deep dive into Mobile development.",
+    notes: [
+      "And having an in-hand experience in Flutter and IOS (swift) real time projects.",
+      "Worked on both UI and Functionality part of the app.",
+      "Especially for Flutter, worked on three platforms Android, IOS, and Web. with REST API integration and BE.",
+    ],
+    tags: ["Flutter", "iOS / Swift", "REST API Integration", "Android & Web"],
   },
   {
-    duration: "Sep 2022 – Dec 2022",
+    id: "bulltech",
     role: "Flutter Developer",
-    company: "Bull Tech Pvt Ltd",
-    location: "Chennai, India",
-    description:
-      "Constructed Cryptocurrency mobile application with Firebase Authentication, Coinbase API integration for live crypto market pricing, currency exchange conversions, and interactive financial feeds.",
-    tags: ["Flutter", "Firebase", "Coinbase API", "Crypto"],
-    companyImage: "/assets/company-bulltech.png",
+    company: "Bull Tech",
+    type: "Internship",
+    duration: "Sep 2022 – Dec 2022 · 4 mos",
+    location: "Chennai, Tamil Nadu, India",
+    workType: "Remote",
+    intro: "Worked on Crypto Currency Application for Bull Tech Pvt Ltd.",
+    notes: [
+      "And i have integrated Firebase for Authentication and Data fetching.",
+      "Used Coinbase Open source network for fetching the Cryptocurrency related data by REST APIs.",
+      "Added functionality to realtime Currency Converter from any currency to USD.",
+      "Added User profile and settings functionality to control the app like Dark mode, Profile Picture and etc.,",
+      "Added the functionality to add any Cryptocurrency to Wishlist and access whenever the user wants and i have handled the majority of edge cases.",
+      "Added the NEWS App functionality to show only the Cryptocurrency related news to the user with the 10mins delay news.",
+    ],
+    tags: ["Flutter", "Firebase Auth", "Coinbase API", "Currency Converter", "Wishlist"],
   },
 ];
 
 export default function ExperienceSection() {
+  const [expandedId, setExpandedId] = useState<string | null>("npst");
+
+  const toggleExpand = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   return (
     <section id="experience" className="py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
       <div className="max-w-7xl mx-auto">
@@ -94,79 +164,127 @@ export default function ExperienceSection() {
             className="text-rose-400 text-xl sm:text-2xl font-normal select-none"
             style={{ fontFamily: "var(--font-cursive)" }}
           >
-            Building products trusted by millions of users
+            Real-world product engineering & LinkedIn verified history
           </p>
         </div>
 
         {/* Timeline List */}
-        <div className="relative pl-6 sm:pl-10 border-l border-white/[0.12] space-y-12 max-w-4xl mx-auto">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative group"
-            >
-              {/* Timeline Indicator Dot */}
-              <div
-                className={`absolute -left-[31px] sm:-left-[47px] top-6 w-4 h-4 rounded-full border-2 transition-all duration-300 ${
-                  exp.current
-                    ? "bg-rose-500 border-white shadow-[0_0_12px_rgba(244,63,94,0.8)] scale-110"
-                    : "bg-[#141417] border-white/30 group-hover:border-rose-400"
-                }`}
-              />
+        <div className="relative pl-6 sm:pl-10 border-l border-white/[0.12] space-y-10 max-w-4xl mx-auto">
+          {experiences.map((exp, index) => {
+            const isExpanded = expandedId === exp.id || exp.current;
 
-              {/* Experience Card */}
-              <div className="p-6 sm:p-8 rounded-3xl bg-[#131316] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-lg">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl font-bold text-white group-hover:text-rose-400 transition-colors">
-                      {exp.role}
-                    </span>
-                    {exp.current && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono">
-                        Current Role
+            return (
+              <motion.div
+                key={exp.id}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative group"
+              >
+                {/* Timeline Indicator Dot */}
+                <div
+                  className={`absolute -left-[31px] sm:-left-[47px] top-6 w-4 h-4 rounded-full border-2 transition-all duration-300 ${
+                    exp.current
+                      ? "bg-rose-500 border-white shadow-[0_0_14px_rgba(244,63,94,0.9)] scale-110"
+                      : "bg-[#141417] border-white/30 group-hover:border-rose-400"
+                  }`}
+                />
+
+                {/* Experience Card */}
+                <div className="p-6 sm:p-8 rounded-3xl bg-[#131316] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-xl">
+                  {/* Top Role & Duration Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h3 className="text-xl font-bold text-white group-hover:text-rose-400 transition-colors">
+                        {exp.role}
+                      </h3>
+                      {exp.current && (
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono font-semibold">
+                          Current Role
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-400">
+                      <Calendar className="w-3.5 h-3.5 text-rose-400" />
+                      <span>{exp.duration}</span>
+                    </div>
+                  </div>
+
+                  {/* Company & Location Info Strip */}
+                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400 mb-5">
+                    <div className="flex items-center gap-1.5 text-white">
+                      <Building2 className="w-3.5 h-3.5 text-purple-400" />
+                      <span>{exp.company}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+                      <span>
+                        {exp.location} · {exp.workType}
                       </span>
-                    )}
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-400">
-                    <Calendar className="w-3.5 h-3.5 text-rose-400" />
-                    <span>{exp.duration}</span>
+                  {/* Intro Text */}
+                  <p className="text-neutral-200 text-sm sm:text-base leading-relaxed mb-4">
+                    {exp.intro}
+                  </p>
+
+                  {/* NPST Feature Checklist */}
+                  {exp.items && (
+                    <div className="mt-4 mb-4 p-5 rounded-2xl bg-[#0c0c0f] border border-white/[0.06]">
+                      <div className="text-xs font-mono font-semibold text-rose-400 uppercase tracking-wider mb-3">
+                        I have developed and worked on:
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-neutral-300 font-mono">
+                        {exp.items.map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <span className="text-rose-500 font-bold">{idx + 1}.</span>
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Thiran, Doodleblue & Bulltech Bullet Points */}
+                  {exp.notes && (
+                    <div className="mt-3 mb-4 space-y-2.5">
+                      {exp.notes.map((note, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0 mt-2" />
+                          <span>{note}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Footer Note */}
+                  {exp.footerNote && (
+                    <p className="text-xs sm:text-sm text-neutral-300 font-mono italic mt-4 pt-3 border-t border-white/[0.06]">
+                      {exp.footerNote}
+                    </p>
+                  )}
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-2 pt-4 mt-4 border-t border-white/[0.06]">
+                    {exp.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-neutral-400"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-
-                <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400 mb-4">
-                  <div className="flex items-center gap-1 text-white">
-                    <Building2 className="w-3.5 h-3.5 text-purple-400" />
-                    <span>{exp.company}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-neutral-500" />
-                    <span>{exp.location}</span>
-                  </div>
-                </div>
-
-                <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-6">
-                  {exp.description}
-                </p>
-
-                {/* Tech Pills */}
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.06]">
-                  {exp.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-neutral-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

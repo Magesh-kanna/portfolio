@@ -3,24 +3,46 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const greetings = [
+  "• Hello",
+  "• Bonjour",
+  "• Ciao",
+  "• Olá",
+  "• こんにちは",
+  "• வணக்கம்",
+  "• नमस्ते",
+  "• Hallo",
+  "• Hola",
+  "• Hello",
+];
+
 export default function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true);
-  const [phase, setPhase] = useState<"text" | "opening" | "done">("text");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [phase, setPhase] = useState<"greeting" | "opening" | "done">("greeting");
 
   useEffect(() => {
-    // Stage 1: Text shows
-    const textTimer = setTimeout(() => {
-      setPhase("opening");
-    }, 1400);
+    // Cycle through languages
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => {
+        if (prev < greetings.length - 1) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          setPhase("opening");
+          return prev;
+        }
+      });
+    }, 180);
 
-    // Stage 2: Curtain opens and unmounts
+    // Unmount after curtain opens
     const exitTimer = setTimeout(() => {
       setPhase("done");
       setIsVisible(false);
-    }, 2200);
+    }, greetings.length * 180 + 700);
 
     return () => {
-      clearTimeout(textTimer);
+      clearInterval(interval);
       clearTimeout(exitTimer);
     };
   }, []);
@@ -53,27 +75,31 @@ export default function LoadingScreen() {
             className="fixed inset-0 bg-[#070708] z-50 origin-bottom"
           />
 
-          {/* Hello Text */}
+          {/* Multilingual Hello Text */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0 }}
             animate={{
-              opacity: phase === "text" ? 1 : 0,
-              y: phase === "text" ? 0 : -15,
+              opacity: phase === "greeting" ? 1 : 0,
             }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 z-[60] flex flex-col items-center justify-center pointer-events-none select-none"
           >
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
-              <p
-                className="text-white text-3xl md:text-5xl lg:text-6xl font-normal tracking-wide"
+              <motion.p
+                key={currentIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.15 }}
+                className="text-white text-3xl md:text-5xl lg:text-6xl font-normal tracking-wide min-w-[200px] text-center"
                 style={{ fontFamily: "var(--font-cursive)" }}
               >
-                • hello
-              </p>
+                {greetings[currentIndex]}
+              </motion.p>
             </div>
             <p className="text-neutral-500 font-mono text-xs uppercase tracking-widest mt-4">
-              Magesh Kanna • Portfolio
+              Magesh K • Portfolio
             </p>
           </motion.div>
         </motion.div>
