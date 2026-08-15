@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, Heart, Send, Sparkles, User, Check, Quote } from "lucide-react";
+import { Heart, Send, Sparkles, Check } from "lucide-react";
 import confetti from "canvas-confetti";
+import MobileGuestbook from "@/components/mobile/MobileGuestbook";
 
 interface GuestbookEntry {
   id: string;
@@ -129,187 +130,195 @@ export default function GuestbookSection() {
   };
 
   return (
-    <section id="guestbook" className="py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
+    <section id="guestbook" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono text-rose-400 uppercase tracking-widest">
-                07 / Interactive Guestbook
-              </span>
-              <span className="w-12 h-[1px] bg-rose-500/40" />
-            </div>
-            <h2
-              className="text-5xl sm:text-6xl md:text-7xl font-bold uppercase text-white tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              LEAVE A <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-500">SIGNATURE</span> & MESSAGE
-            </h2>
-          </div>
-
-          <p
-            className="text-rose-400 text-xl sm:text-2xl font-normal select-none"
-            style={{ fontFamily: "var(--font-cursive)" }}
-          >
-            Say hello, leave feedback, or drop an endorsement
-          </p>
+        {/* Dedicated Mobile View (< 768px) */}
+        <div className="block md:hidden">
+          <MobileGuestbook />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Form Column (5 cols) */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5 p-7 sm:p-8 rounded-3xl bg-[#131316] border border-white/[0.1] shadow-2xl relative overflow-hidden"
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <Sparkles className="w-4 h-4 text-rose-400" />
-              <h3 className="text-lg font-bold text-white">Sign the Guestbook</h3>
+        {/* Desktop Web View (>= 768px) */}
+        <div className="hidden md:block">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-mono text-rose-400 uppercase tracking-widest">
+                  07 / Interactive Guestbook
+                </span>
+                <span className="w-12 h-[1px] bg-rose-500/40" />
+              </div>
+              <h2
+                className="text-5xl sm:text-6xl md:text-7xl font-bold uppercase text-white tracking-tight"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                LEAVE A <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-500">SIGNATURE</span> & MESSAGE
+              </h2>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Avatar Selector */}
-              <div>
-                <label className="block text-xs font-mono text-neutral-400 mb-2">
-                  Choose Avatar Emoji
-                </label>
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  {emojiAvatars.map((emoji) => (
-                    <button
-                      type="button"
-                      key={emoji}
-                      onClick={() => setSelectedEmoji(emoji)}
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center text-base transition-all cursor-pointer ${
-                        selectedEmoji === emoji
-                          ? "bg-rose-500/20 border-2 border-rose-500 scale-110 shadow-lg shadow-rose-500/20"
-                          : "bg-[#18181c] border border-white/[0.08] hover:border-white/20"
-                      }`}
-                    >
-                      {emoji}
-                    </button>
-                  ))}
+            <p
+              className="text-rose-400 text-xl sm:text-2xl font-normal select-none"
+              style={{ fontFamily: "var(--font-cursive)" }}
+            >
+              Say hello, leave feedback, or drop an endorsement
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Form Column (5 cols) */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 p-7 sm:p-8 rounded-3xl bg-[#131316] border border-white/[0.1] shadow-2xl relative overflow-hidden"
+            >
+              <div className="flex items-center gap-2 mb-6">
+                <Sparkles className="w-4 h-4 text-rose-400" />
+                <h3 className="text-lg font-bold text-white">Sign the Guestbook</h3>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Avatar Selector */}
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-2">
+                    Choose Avatar Emoji
+                  </label>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    {emojiAvatars.map((emoji) => (
+                      <button
+                        type="button"
+                        key={emoji}
+                        onClick={() => setSelectedEmoji(emoji)}
+                        className={`w-9 h-9 rounded-xl flex items-center justify-center text-base transition-all cursor-pointer ${
+                          selectedEmoji === emoji
+                            ? "bg-rose-500/20 border-2 border-rose-500 scale-110 shadow-lg shadow-rose-500/20"
+                            : "bg-[#18181c] border border-white/[0.08] hover:border-white/20"
+                        }`}
+                      >
+                        {emoji}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-xs font-mono text-neutral-400 mb-1">
-                  Your Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Alex Rivera"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#0e0e11] border border-white/[0.08] text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-rose-500/60 transition-colors"
-                />
-              </div>
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-1">
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Alex Rivera"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#0e0e11] border border-white/[0.08] text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-rose-500/60 transition-colors"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-xs font-mono text-neutral-400 mb-1">
-                  Your Role or City (Optional)
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Mobile Engineer, Bangalore"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#0e0e11] border border-white/[0.08] text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-rose-500/60 transition-colors"
-                />
-              </div>
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-1">
+                    Your Role or City (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Mobile Engineer, Bangalore"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#0e0e11] border border-white/[0.08] text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-rose-500/60 transition-colors"
+                  />
+                </div>
 
-              <div>
-                <label className="block text-xs font-mono text-neutral-400 mb-1">
-                  Message *
-                </label>
-                <textarea
-                  required
-                  rows={3}
-                  placeholder="Leave your signature, feedback or message..."
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full px-4 py-3 rounded-2xl bg-[#0e0e11] border border-white/[0.08] text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-rose-500/60 transition-colors resize-none"
-                />
-              </div>
+                <div>
+                  <label className="block text-xs font-mono text-neutral-400 mb-1">
+                    Message *
+                  </label>
+                  <textarea
+                    required
+                    rows={3}
+                    placeholder="Leave your signature, feedback or message..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full px-4 py-3 rounded-2xl bg-[#0e0e11] border border-white/[0.08] text-white text-sm placeholder:text-neutral-600 focus:outline-none focus:border-rose-500/60 transition-colors resize-none"
+                  />
+                </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-3.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-neutral-200 transition-all cursor-pointer shadow-lg hover:shadow-white/20 disabled:opacity-50"
-              >
-                <Send className="w-4 h-4" />
-                <span>{isSubmitting ? "Signing..." : "Post Message"}</span>
-              </button>
-
-              <AnimatePresence>
-                {successMessage && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2"
-                  >
-                    <Check className="w-4 h-4" />
-                    <span>Your message was posted with confetti! 🎉</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </form>
-          </motion.div>
-
-          {/* Entries Feed Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-4 max-h-[600px] overflow-y-auto pr-2">
-            <AnimatePresence>
-              {entries.map((entry) => (
-                <motion.div
-                  key={entry.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-6 rounded-3xl bg-[#131316] border border-white/[0.08] hover:border-white/15 transition-all shadow-md flex flex-col justify-between"
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-neutral-200 transition-all cursor-pointer shadow-lg hover:shadow-white/20 disabled:opacity-50"
                 >
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-[#19191e] border border-white/[0.1] flex items-center justify-center text-xl">
-                        {entry.avatarEmoji}
+                  <Send className="w-4 h-4" />
+                  <span>{isSubmitting ? "Signing..." : "Post Message"}</span>
+                </button>
+
+                <AnimatePresence>
+                  {successMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2"
+                    >
+                      <Check className="w-4 h-4" />
+                      <span>Your message was posted with confetti! 🎉</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </form>
+            </motion.div>
+
+            {/* Entries Feed Column (7 cols) */}
+            <div className="lg:col-span-7 space-y-4 max-h-[600px] overflow-y-auto pr-2">
+              <AnimatePresence>
+                {entries.map((entry) => (
+                  <motion.div
+                    key={entry.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-6 rounded-3xl bg-[#131316] border border-white/[0.08] hover:border-white/15 transition-all shadow-md flex flex-col justify-between"
+                  >
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-2xl bg-[#19191e] border border-white/[0.1] flex items-center justify-center text-xl">
+                          {entry.avatarEmoji}
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-bold text-white">{entry.name}</h4>
+                          {entry.role && (
+                            <p className="text-[11px] font-mono text-neutral-400">{entry.role}</p>
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-sm font-bold text-white">{entry.name}</h4>
-                        {entry.role && (
-                          <p className="text-[11px] font-mono text-neutral-400">{entry.role}</p>
-                        )}
-                      </div>
+
+                      <span className="text-[10px] font-mono text-neutral-500">{entry.date}</span>
                     </div>
 
-                    <span className="text-[10px] font-mono text-neutral-500">{entry.date}</span>
-                  </div>
+                    <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-4 pl-1">
+                      &ldquo;{entry.message}&rdquo;
+                    </p>
 
-                  <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-4 pl-1">
-                    &ldquo;{entry.message}&rdquo;
-                  </p>
-
-                  <div className="flex items-center justify-end pt-3 border-t border-white/[0.04]">
-                    <button
-                      onClick={() => toggleLike(entry.id)}
-                      className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
-                        entry.isLiked
-                          ? "bg-rose-500/20 text-rose-400 border border-rose-500/30"
-                          : "bg-white/[0.03] text-neutral-400 hover:text-white border border-white/[0.06]"
-                      }`}
-                    >
-                      <Heart
-                        className={`w-3.5 h-3.5 ${
-                          entry.isLiked ? "fill-rose-400 text-rose-400" : ""
+                    <div className="flex items-center justify-end pt-3 border-t border-white/[0.04]">
+                      <button
+                        onClick={() => toggleLike(entry.id)}
+                        className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
+                          entry.isLiked
+                            ? "bg-rose-500/20 text-rose-400 border border-rose-500/30"
+                            : "bg-white/[0.03] text-neutral-400 hover:text-white border border-white/[0.06]"
                         }`}
-                      />
-                      <span>{entry.likes}</span>
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                      >
+                        <Heart
+                          className={`w-3.5 h-3.5 ${
+                            entry.isLiked ? "fill-rose-400 text-rose-400" : ""
+                          }`}
+                        />
+                        <span>{entry.likes}</span>
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>

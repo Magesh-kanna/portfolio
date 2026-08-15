@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  Briefcase,
   Calendar,
   MapPin,
   Building2,
-  ChevronDown,
-  ChevronUp,
-  CheckCircle2,
-  Sparkles,
 } from "lucide-react";
+import MobileExperience from "@/components/mobile/MobileExperience";
 
 interface ExperienceItem {
   id: string;
@@ -134,157 +130,157 @@ const experiences: ExperienceItem[] = [
 ];
 
 export default function ExperienceSection() {
-  const [expandedId, setExpandedId] = useState<string | null>("npst");
-
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
-
   return (
-    <section id="experience" className="py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
+    <section id="experience" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono text-rose-400 uppercase tracking-widest">
-                03 / Experience
-              </span>
-              <span className="w-12 h-[1px] bg-rose-500/40" />
-            </div>
-            <h2
-              className="text-5xl sm:text-6xl md:text-7xl font-bold uppercase text-white tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              CAREER <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-500">TIMELINE</span> & IMPACT
-            </h2>
-          </div>
-
-          <p
-            className="text-rose-400 text-xl sm:text-2xl font-normal select-none"
-            style={{ fontFamily: "var(--font-cursive)" }}
-          >
-            Real-world product engineering & LinkedIn verified history
-          </p>
+        {/* Dedicated Mobile View (< 768px) */}
+        <div className="block md:hidden">
+          <MobileExperience />
         </div>
 
-        {/* Timeline List */}
-        <div className="relative pl-6 sm:pl-10 border-l border-white/[0.12] space-y-10 max-w-4xl mx-auto">
-          {experiences.map((exp, index) => {
-            const isExpanded = expandedId === exp.id || exp.current;
-
-            return (
-              <motion.div
-                key={exp.id}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative group"
+        {/* Desktop Web View (>= 768px) */}
+        <div className="hidden md:block">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-mono text-rose-400 uppercase tracking-widest">
+                  03 / Experience
+                </span>
+                <span className="w-12 h-[1px] bg-rose-500/40" />
+              </div>
+              <h2
+                className="text-5xl sm:text-6xl md:text-7xl font-bold uppercase text-white tracking-tight"
+                style={{ fontFamily: "var(--font-display)" }}
               >
-                {/* Timeline Indicator Dot */}
-                <div
-                  className={`absolute -left-[31px] sm:-left-[47px] top-6 w-4 h-4 rounded-full border-2 transition-all duration-300 ${
-                    exp.current
-                      ? "bg-rose-500 border-white shadow-[0_0_14px_rgba(244,63,94,0.9)] scale-110"
-                      : "bg-[#141417] border-white/30 group-hover:border-rose-400"
-                  }`}
-                />
+                CAREER <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-500">TIMELINE</span> & IMPACT
+              </h2>
+            </div>
 
-                {/* Experience Card */}
-                <div className="p-6 sm:p-8 rounded-3xl bg-[#131316] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-xl">
-                  {/* Top Role & Duration Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <h3 className="text-xl font-bold text-white group-hover:text-rose-400 transition-colors">
-                        {exp.role}
-                      </h3>
-                      {exp.current && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono font-semibold">
-                          Current Role
-                        </span>
-                      )}
-                    </div>
+            <p
+              className="text-rose-400 text-xl sm:text-2xl font-normal select-none"
+              style={{ fontFamily: "var(--font-cursive)" }}
+            >
+              Real-world product engineering & LinkedIn verified history
+            </p>
+          </div>
 
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-400">
-                      <Calendar className="w-3.5 h-3.5 text-rose-400" />
-                      <span>{exp.duration}</span>
-                    </div>
-                  </div>
+          {/* Timeline List */}
+          <div className="relative pl-6 sm:pl-10 border-l border-white/[0.12] space-y-10 max-w-4xl mx-auto">
+            {experiences.map((exp, index) => {
+              return (
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative group"
+                >
+                  {/* Timeline Indicator Dot */}
+                  <div
+                    className={`absolute -left-[31px] sm:-left-[47px] top-6 w-4 h-4 rounded-full border-2 transition-all duration-300 ${
+                      exp.current
+                        ? "bg-rose-500 border-white shadow-[0_0_14px_rgba(244,63,94,0.9)] scale-110"
+                        : "bg-[#141417] border-white/30 group-hover:border-rose-400"
+                    }`}
+                  />
 
-                  {/* Company & Location Info Strip */}
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400 mb-5">
-                    <div className="flex items-center gap-1.5 text-white">
-                      <Building2 className="w-3.5 h-3.5 text-purple-400" />
-                      <span>{exp.company}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-neutral-500" />
-                      <span>
-                        {exp.location} · {exp.workType}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Intro Text */}
-                  <p className="text-neutral-200 text-sm sm:text-base leading-relaxed mb-4">
-                    {exp.intro}
-                  </p>
-
-                  {/* NPST Feature Checklist */}
-                  {exp.items && (
-                    <div className="mt-4 mb-4 p-5 rounded-2xl bg-[#0c0c0f] border border-white/[0.06]">
-                      <div className="text-xs font-mono font-semibold text-rose-400 uppercase tracking-wider mb-3">
-                        I have developed and worked on:
+                  {/* Experience Card */}
+                  <div className="p-6 sm:p-8 rounded-3xl bg-[#131316] border border-white/[0.08] hover:border-white/20 transition-all duration-300 shadow-xl">
+                    {/* Top Role & Duration Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <h3 className="text-xl font-bold text-white group-hover:text-rose-400 transition-colors">
+                          {exp.role}
+                        </h3>
+                        {exp.current && (
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono font-semibold">
+                            Current Role
+                          </span>
+                        )}
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-neutral-300 font-mono">
-                        {exp.items.map((item, idx) => (
-                          <div key={idx} className="flex items-start gap-2">
-                            <span className="text-rose-500 font-bold">{idx + 1}.</span>
-                            <span>{item}</span>
+
+                      <div className="flex items-center gap-1.5 text-xs font-mono text-neutral-400">
+                        <Calendar className="w-3.5 h-3.5 text-rose-400" />
+                        <span>{exp.duration}</span>
+                      </div>
+                    </div>
+
+                    {/* Company & Location Info Strip */}
+                    <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-400 mb-5">
+                      <div className="flex items-center gap-1.5 text-white">
+                        <Building2 className="w-3.5 h-3.5 text-purple-400" />
+                        <span>{exp.company}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+                        <span>
+                          {exp.location} · {exp.workType}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Intro Text */}
+                    <p className="text-neutral-200 text-sm sm:text-base leading-relaxed mb-4">
+                      {exp.intro}
+                    </p>
+
+                    {/* NPST Feature Checklist */}
+                    {exp.items && (
+                      <div className="mt-4 mb-4 p-5 rounded-2xl bg-[#0c0c0f] border border-white/[0.06]">
+                        <div className="text-xs font-mono font-semibold text-rose-400 uppercase tracking-wider mb-3">
+                          I have developed and worked on:
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-neutral-300 font-mono">
+                          {exp.items.map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <span className="text-rose-500 font-bold">{idx + 1}.</span>
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Bullet Points */}
+                    {exp.notes && (
+                      <div className="mt-3 mb-4 space-y-2.5">
+                        {exp.notes.map((note, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0 mt-2" />
+                            <span>{note}</span>
                           </div>
                         ))}
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* Thiran, Doodleblue & Bulltech Bullet Points */}
-                  {exp.notes && (
-                    <div className="mt-3 mb-4 space-y-2.5">
-                      {exp.notes.map((note, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans"
+                    {/* Footer Note */}
+                    {exp.footerNote && (
+                      <p className="text-xs sm:text-sm text-neutral-300 font-mono italic mt-4 pt-3 border-t border-white/[0.06]">
+                        {exp.footerNote}
+                      </p>
+                    )}
+
+                    {/* Tech Tags */}
+                    <div className="flex flex-wrap gap-2 pt-4 mt-4 border-t border-white/[0.06]">
+                      {exp.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-neutral-400"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0 mt-2" />
-                          <span>{note}</span>
-                        </div>
+                          {tag}
+                        </span>
                       ))}
                     </div>
-                  )}
-
-                  {/* Footer Note */}
-                  {exp.footerNote && (
-                    <p className="text-xs sm:text-sm text-neutral-300 font-mono italic mt-4 pt-3 border-t border-white/[0.06]">
-                      {exp.footerNote}
-                    </p>
-                  )}
-
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-2 pt-4 mt-4 border-t border-white/[0.06]">
-                    {exp.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[11px] font-mono text-neutral-400"
-                      >
-                        {tag}
-                      </span>
-                    ))}
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

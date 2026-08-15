@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Sparkles, MapPin, Clock, FileText } from "lucide-react";
 import Image from "next/image";
+import MobileHero from "@/components/mobile/MobileHero";
 
 interface HeroSectionProps {
   greeting?: string;
@@ -87,14 +88,25 @@ export default function HeroSection({
   return (
     <section
       id="home"
-      className="min-h-screen relative flex items-center justify-center pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#0a0a0a]"
+      className="min-h-screen relative flex items-center justify-center pt-24 md:pt-32 pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#0a0a0a]"
     >
       {/* Background Decorative Grids and Radial Glows */}
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-rose-500/10 via-purple-600/10 to-indigo-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -bottom-10 right-10 w-96 h-96 bg-rose-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      {/* Mobile Dedicated View (< 768px) */}
+      <div className="block md:hidden w-full">
+        <MobileHero
+          name={name}
+          tagline={tagline}
+          description={description}
+          profileImage={profileImage}
+        />
+      </div>
+
+      {/* Desktop Web View (>= 768px) */}
+      <div className="hidden md:block max-w-7xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Hero Typography & Info */}
           <motion.div
@@ -269,7 +281,7 @@ export default function HeroSection({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
+        className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 pointer-events-none"
       >
         <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
           Scroll to explore

@@ -15,6 +15,7 @@ import GuestbookSection from "@/components/GuestbookSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
+import MobileBottomNav from "@/components/mobile/MobileBottomNav";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <LoadingScreen />
       <Navbar />
       <CommandPalette />
+      <MobileBottomNav />
       <main className="bg-[#0a0a0a] text-white min-h-screen">
         <HeroSection />
         <SkillsMarquee />

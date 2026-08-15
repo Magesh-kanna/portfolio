@@ -46,6 +46,12 @@ html {
   background-color: #0a0a0a;
   color: #fafafa;
   font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom Scrollbar */
@@ -70,6 +76,14 @@ html {
 
 .font-cursive {
   font-family: var(--font-cursive);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .glass-panel {
@@ -167,4 +181,3 @@ html {
   background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
   background-size: 24px 24px;
 }
-
