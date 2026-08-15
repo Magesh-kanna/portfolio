@@ -11,6 +11,8 @@ import {
   Star,
   Play,
   Flame,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
 import Image from "next/image";
@@ -179,6 +181,20 @@ export default function ProjectsSection() {
 
   const flagship = allProjects.find((p) => p.id === "itineery-ai");
 
+  const nextSlide = () => {
+    if (flagship?.carouselImages) {
+      setActiveCarouselIndex((prev) => (prev + 1) % flagship.carouselImages!.length);
+    }
+  };
+
+  const prevSlide = () => {
+    if (flagship?.carouselImages) {
+      setActiveCarouselIndex(
+        (prev) => (prev - 1 + flagship.carouselImages!.length) % flagship.carouselImages!.length
+      );
+    }
+  };
+
   return (
     <section id="projects" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] relative">
       <div className="max-w-7xl mx-auto">
@@ -306,7 +322,7 @@ export default function ProjectsSection() {
 
                 {/* Right Column: Full Screenshot View */}
                 <div className="lg:col-span-6 flex flex-col items-center">
-                  <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-2xl overflow-hidden bg-[#0a0a0d] border border-white/[0.12] shadow-2xl flex items-center justify-center p-2">
+                  <div className="relative w-full h-[320px] sm:h-[380px] md:h-[420px] rounded-2xl overflow-hidden bg-[#0a0a0d] border border-white/[0.12] shadow-2xl flex items-center justify-center p-2 group/carousel">
                     {flagship.carouselImages && (
                       <Image
                         src={flagship.carouselImages[activeCarouselIndex] || flagship.image}
@@ -315,6 +331,26 @@ export default function ProjectsSection() {
                         className="object-contain p-2 transition-all duration-500 drop-shadow-2xl"
                         sizes="(max-width: 768px) 100vw, 500px"
                       />
+                    )}
+
+                    {/* Previous & Next Navigation Arrows */}
+                    {flagship.carouselImages && flagship.carouselImages.length > 1 && (
+                      <>
+                        <button
+                          onClick={prevSlide}
+                          className="absolute left-3 p-2.5 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 text-white hover:scale-110 active:scale-95 transition-all shadow-xl cursor-pointer z-10"
+                          aria-label="Previous screenshot"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={nextSlide}
+                          className="absolute right-3 p-2.5 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 text-white hover:scale-110 active:scale-95 transition-all shadow-xl cursor-pointer z-10"
+                          aria-label="Next screenshot"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                      </>
                     )}
                   </div>
 
