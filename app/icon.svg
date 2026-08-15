@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mk-ring-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="45%" stop-color="#d946ef"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+    <radialGradient id="mk-dark-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141416"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Main Background & Ring -->
+  <circle cx="256" cy="256" r="236" fill="url(#mk-dark-bg)" stroke="url(#mk-ring-gradient)" stroke-width="16"/>
+
+  <!-- MK Typography -->
+  <text 
+    x="256" 
+    y="298" 
+    text-anchor="middle" 
+    fill="#ffffff" 
+    font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" 
+    font-weight="800" 
+    font-size="172" 
+    letter-spacing="2">MK</text>
+
+  <!-- Emerald Online Status Indicator Dot -->
+  <circle cx="418" cy="412" r="54" fill="#0a0a0a" />
+  <circle cx="418" cy="412" r="36" fill="#10b981" />
+</svg>
