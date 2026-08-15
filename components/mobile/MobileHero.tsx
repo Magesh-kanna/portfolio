@@ -193,7 +193,7 @@ export default function MobileHero({
         </div>
         <div className="flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5 text-purple-400" />
-          <span>{timeIST ? `${timeIST} IST` : "India (IST)"}</span>
+          <span suppressHydrationWarning>{timeIST ? `${timeIST} IST` : "India (IST)"}</span>
         </div>
       </motion.div>
     </div>

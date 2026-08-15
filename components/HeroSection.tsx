@@ -194,7 +194,7 @@ export default function HeroSection({
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-purple-400" />
-                <span>{timeIST ? `${timeIST} IST` : "India Standard Time"}</span>
+                <span suppressHydrationWarning>{timeIST ? `${timeIST} IST` : "India Standard Time"}</span>
               </div>
             </div>
           </motion.div>

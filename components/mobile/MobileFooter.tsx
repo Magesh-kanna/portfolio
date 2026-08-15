@@ -12,7 +12,7 @@ export default function MobileFooter() {
   };
 
   return (
-    <footer className="pb-24 pt-10 px-4 bg-[#070709] border-t border-white/[0.08] relative select-none md:hidden">
+    <footer className="pb-36 pt-10 px-4 bg-[#070709] border-t border-white/[0.08] relative select-none md:hidden">
       <div className="flex flex-col items-center text-center gap-4">
         <div>
           <div className="flex items-center justify-center gap-2 mb-1">
